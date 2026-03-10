@@ -1,0 +1,47 @@
+---
+import "@/styles/global.css"
+
+const { lang = "en", dir = "ltr" } = Astro.props
+---
+
+<html lang={lang} dir={dir}>
+  <head>
+    <script is:inline>
+      {`(() => {
+        const supported = ["en", "fr", "es", "de", "ar"];
+        const fallback = "en";
+        const stored = localStorage.getItem("site-language");
+
+        const getNormalized = (value) => value.toLowerCase().split("-")[0];
+
+        let chosen = fallback;
+
+        if (stored && supported.includes(stored)) {
+          chosen = stored;
+        } else {
+          const browserLanguages = navigator.languages?.length
+            ? navigator.languages
+            : [navigator.language];
+
+          for (const candidate of browserLanguages) {
+            const normalized = getNormalized(candidate);
+            if (supported.includes(normalized)) {
+              chosen = normalized;
+              break;
+            }
+          }
+        }
+
+        document.documentElement.lang = chosen;
+        document.documentElement.dir = chosen === "ar" ? "rtl" : "ltr";
+      })();`}
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Astro App</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
