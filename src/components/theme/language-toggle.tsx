@@ -24,9 +24,14 @@ const languageLabels: Record<SupportedLanguage, string> = {
 type LanguageToggleProps = {
   value: SupportedLanguage
   onChange: (value: SupportedLanguage) => void
+  compact?: boolean
 }
 
-export function LanguageToggle({ value, onChange }: LanguageToggleProps) {
+export function LanguageToggle({
+  value,
+  onChange,
+  compact = false,
+}: LanguageToggleProps) {
   const shortLabel = value.toUpperCase()
 
   return (
@@ -34,11 +39,15 @@ export function LanguageToggle({ value, onChange }: LanguageToggleProps) {
       <DropdownMenuTrigger
         className={cn(
           buttonVariants({ variant: "outline", size: "sm" }),
-          "h-7 gap-1.5 border-neutral-600/30 px-2 text-neutral-600"
+          compact
+            ? "h-7 min-w-8 border-neutral-600/30 px-2 text-[11px] font-semibold tracking-wide text-neutral-600"
+            : "h-7 gap-1.5 border-neutral-600/30 px-2 text-neutral-600"
         )}
       >
-        <LanguageIcon className="size-3.5" />
-        <span className="text-[11px] font-semibold tracking-wide">
+        {compact ? null : <LanguageIcon className="size-3.5" />}
+        <span
+          className={cn(!compact && "text-[11px] font-semibold tracking-wide")}
+        >
           {shortLabel}
         </span>
       </DropdownMenuTrigger>
