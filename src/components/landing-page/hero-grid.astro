@@ -1,0 +1,242 @@
+---
+const pixels = [
+  { top: "12%", left: "18%", color: "#fff5e1" },
+  { top: "12%", left: "26%", color: "#ffffff" },
+  { top: "22%", left: "34%", color: "#fff5e1" },
+  { top: "18%", left: "48%", color: "#a80000" },
+  { top: "28%", left: "56%", color: "#fff5e1" },
+  { top: "32%", left: "22%", color: "#a80000" },
+  { top: "38%", left: "42%", color: "#ffffff" },
+  { top: "44%", left: "62%", color: "#fff5e1" },
+  { top: "48%", left: "30%", color: "#fff5e1" },
+  { top: "52%", left: "50%", color: "#a80000" },
+  { top: "58%", left: "18%", color: "#ffffff" },
+  { top: "62%", left: "38%", color: "#fff5e1" },
+  { top: "66%", left: "58%", color: "#a80000" },
+  { top: "70%", left: "26%", color: "#fff5e1" },
+  { top: "74%", left: "46%", color: "#ffffff" },
+  { top: "78%", left: "66%", color: "#fff5e1" },
+]
+---
+
+<div class="mt-[50px]">
+<main
+  data-hero-main
+  class="relative grid h-[calc(100svh-50px)] grid-cols-3 grid-rows-[3fr_2fr] items-stretch overflow-hidden"
+>
+  <!-- Top-left -->
+  <section
+    data-hero-top-left
+    class="relative col-span-2 row-start-1 min-h-0 px-8 py-10 md:px-12 md:py-14 will-change-transform"
+  >
+    <svg
+      class="mb-6 h-3 w-8 text-[#ff0000]"
+      viewBox="0 0 32 12"
+      fill="none"
+      aria-hidden="true"
+    >
+      <rect x="1" y="1" width="30" height="10" stroke="currentColor" stroke-width="1.5"></rect>
+      <line x1="16" y1="1" x2="16" y2="11" stroke="currentColor" stroke-width="1"></line>
+    </svg>
+    <h1
+      class="font-heading max-w-2xl text-[clamp(1.75rem,3.5vw,3.25rem)] leading-[1.08] font-bold tracking-tight text-[#2a2a2a]"
+    >
+      Design software for people who design buildings.
+    </h1>
+  </section>
+
+  <!-- Top-right -->
+  <div
+    data-hero-aec-cell
+    class="relative col-span-1 col-start-3 row-start-1 min-h-0"
+  >
+    <section
+      data-hero-aec
+      class="absolute inset-0 bg-[#FDE9C1] px-6 py-10 md:px-8 md:py-14 border-l border-[#BA0000] will-change-[top,left,width,height]"
+    >
+      <p
+        class="max-w-[80%] text-3xl leading-snug font-medium text-[#1a1a1a]"
+      >
+        We build tailored software systems for the AEC industry.
+      </p>
+      <img
+        data-hero-aec-logo
+        src="/hero-AEC.png"
+        alt="AEC skyline illustration"
+        class="absolute right-0 bottom-0 h-[60px] w-[200px] object-contain object-bottom-right will-change-[width,height]"
+      />
+    </section>
+  </div>
+
+  <!-- Bottom-left -->
+  <section
+    data-hero-bottom-left
+    class="relative col-span-1 row-start-2 min-h-0 flex items-end px-6 pb-8 md:px-8 md:pb-10 border-t border-[#BA0000] will-change-transform"
+  >
+  
+  </section>
+
+  <!-- Bottom-right -->
+  <section
+    data-hero-bottom-right
+    class="relative col-span-2 row-start-2 min-h-0 overflow-hidden bg-[#BA0000] will-change-transform"
+  >
+    <div
+      class="pointer-events-none absolute inset-0 opacity-20"
+      style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"
+      aria-hidden="true"
+    ></div>
+    <div class="absolute inset-0" aria-hidden="true">
+      {
+        pixels.map(({ top, left, color }) => (
+          <div
+            class="absolute h-7 w-7 md:h-8 md:w-8"
+            style={`top: ${top}; left: ${left}; background-color: ${color};`}
+          />
+        ))
+      }
+    </div>
+  </section>
+</main>
+</div>
+
+<section class="min-h-[100svh] px-8 py-24 md:px-12">
+  <p class="font-heading max-w-3xl text-[clamp(1.5rem,3vw,2.5rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]">
+    Software that fits how your team actually works.
+  </p>
+</section>
+
+<script>
+  import gsap from "gsap"
+  import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  let ctx: gsap.Context | undefined
+
+  function initHeroAecExpand() {
+    ctx?.revert()
+
+    const main = document.querySelector<HTMLElement>("[data-hero-main]")
+    const panel = document.querySelector<HTMLElement>("[data-hero-aec]")
+    const cell = document.querySelector<HTMLElement>("[data-hero-aec-cell]")
+
+    const topLeft = document.querySelector<HTMLElement>("[data-hero-top-left]")
+    const bottomLeft = document.querySelector<HTMLElement>("[data-hero-bottom-left]")
+    const bottomRight = document.querySelector<HTMLElement>("[data-hero-bottom-right]")
+    const logo = panel?.querySelector<HTMLImageElement>("[data-hero-aec-logo]")
+
+    if (!main || !panel || !cell || !topLeft || !bottomLeft || !bottomRight || !logo) return
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReducedMotion) return
+
+    const run = () => {
+      ctx = gsap.context(() => {
+        const getCellMetrics = () => {
+          const mainRect = main.getBoundingClientRect()
+          const cellRect = cell.getBoundingClientRect()
+
+          return {
+            top: cellRect.top - mainRect.top,
+            left: cellRect.left - mainRect.left,
+            width: cellRect.width,
+            height: cellRect.height,
+          }
+        }
+
+        main.appendChild(panel)
+
+        const metrics = getCellMetrics()
+        const bottomRowTop =
+          bottomLeft.getBoundingClientRect().top - main.getBoundingClientRect().top
+
+        const logoAspect =
+          logo.naturalWidth > 0 ? logo.naturalWidth / logo.naturalHeight : logo.offsetWidth / logo.offsetHeight
+        const logoStart = { width: logo.offsetWidth, height: logo.offsetHeight }
+        const logoEnd = () => ({
+          width: window.innerWidth,
+          height: window.innerWidth / logoAspect,
+        })
+
+        const expanded = () => ({
+          top: -main.getBoundingClientRect().top,
+          left: -main.getBoundingClientRect().left,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        })
+
+        const getPanelRect = (progress: number) => {
+          const end = expanded()
+          const top = gsap.utils.interpolate(metrics.top, end.top, progress)
+          const left = gsap.utils.interpolate(metrics.left, end.left, progress)
+          const width = gsap.utils.interpolate(metrics.width, end.width, progress)
+          const height = gsap.utils.interpolate(metrics.height, end.height, progress)
+
+          return { top, left, width, height, bottom: top + height }
+        }
+
+        const applyFrame = (progress: number) => {
+          const panelRect = getPanelRect(progress)
+          const endLogo = logoEnd()
+
+          gsap.set(panel, {
+            top: panelRect.top,
+            left: panelRect.left,
+            width: panelRect.width,
+            height: panelRect.height,
+          })
+
+          gsap.set(topLeft, { x: -(metrics.left - panelRect.left) })
+          gsap.set(bottomLeft, { y: Math.max(0, panelRect.bottom - bottomRowTop) })
+          gsap.set(bottomRight, { y: Math.max(0, panelRect.bottom - bottomRowTop) })
+
+          gsap.set(logo, {
+            width: gsap.utils.interpolate(logoStart.width, endLogo.width, progress),
+            height: gsap.utils.interpolate(logoStart.height, endLogo.height, progress),
+          })
+        }
+
+        gsap.set(panel, { position: "absolute" })
+        applyFrame(0)
+
+        const headerHeight = document.querySelector("header")?.offsetHeight ?? 50
+
+        ScrollTrigger.create({
+          trigger: main,
+          start: `top ${headerHeight}px`,
+          end: "+=100%",
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          onUpdate: (self) => {
+            applyFrame(self.progress)
+          },
+          onLeave: () => {
+            gsap.set(panel, { top: 0, left: 0, width: "100%", height: "100%" })
+            applyFrame(1)
+          },
+          onLeaveBack: () => {
+            applyFrame(0)
+          },
+        })
+      }, main)
+    }
+
+    if (logo.complete && logo.naturalWidth > 0) {
+      run()
+    } else {
+      logo.addEventListener("load", run, { once: true })
+    }
+  }
+
+  let initTimeout: ReturnType<typeof setTimeout> | undefined
+
+  function scheduleInit() {
+    clearTimeout(initTimeout)
+    initTimeout = setTimeout(initHeroAecExpand, 0)
+  }
+
+  scheduleInit()
+  document.addEventListener("astro:page-load", scheduleInit)
+</script>
