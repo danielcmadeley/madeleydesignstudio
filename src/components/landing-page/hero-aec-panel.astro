@@ -1,0 +1,54 @@
+---
+interface HeroSlide {
+  id: string
+  subtext: string
+  image: string
+}
+
+interface Props {
+  slides: HeroSlide[]
+}
+
+const { slides } = Astro.props
+---
+
+<div
+  data-hero-aec-cell
+  class="relative col-span-1 col-start-3 row-start-1 min-h-0"
+>
+  <section
+    data-hero-aec
+    class="absolute inset-0 bg-[#FDE9C1] px-6 py-10 md:px-8 md:py-14 border-l border-[#BA0000] will-change-[top,left,width,height]"
+  >
+    <div class="relative max-w-[80%]">
+      {
+        slides.map((slide, index) => (
+          <p
+            data-hero-subtext
+            data-slide={index}
+            class:list={[
+              "text-3xl leading-snug font-medium text-[#1a1a1a]",
+              index === 0 ? "relative" : "absolute inset-0 opacity-0",
+            ]}
+          >
+            {slide.subtext}
+          </p>
+        ))
+      }
+    </div>
+    {
+      slides.map((slide, index) => (
+        <img
+          data-hero-aec-logo
+          data-slide={index}
+          src={slide.image}
+          alt=""
+          class:list={[
+            "absolute right-0 bottom-0 h-[60px] w-[200px] object-contain object-bottom-right will-change-[width,height]",
+            index === 0 ? "opacity-100" : "opacity-0",
+          ]}
+        />
+      ))
+    }
+  </section>
+</div>

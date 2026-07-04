@@ -1,0 +1,41 @@
+---
+const pixels = [
+  { top: "12%", left: "18%", color: "#fff5e1" },
+  { top: "12%", left: "26%", color: "#ffffff" },
+  { top: "22%", left: "34%", color: "#fff5e1" },
+  { top: "18%", left: "48%", color: "#a80000" },
+  { top: "28%", left: "56%", color: "#fff5e1" },
+  { top: "32%", left: "22%", color: "#a80000" },
+  { top: "38%", left: "42%", color: "#ffffff" },
+  { top: "44%", left: "62%", color: "#fff5e1" },
+  { top: "48%", left: "30%", color: "#fff5e1" },
+  { top: "52%", left: "50%", color: "#a80000" },
+  { top: "58%", left: "18%", color: "#ffffff" },
+  { top: "62%", left: "38%", color: "#fff5e1" },
+  { top: "66%", left: "58%", color: "#a80000" },
+  { top: "70%", left: "26%", color: "#fff5e1" },
+  { top: "74%", left: "46%", color: "#ffffff" },
+  { top: "78%", left: "66%", color: "#fff5e1" },
+]
+---
+
+<section
+  data-hero-bottom-right
+  class="relative col-span-2 row-start-2 min-h-0 overflow-hidden bg-[#BA0000] will-change-transform"
+>
+  <div
+    class="pointer-events-none absolute inset-0 opacity-20"
+    style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"
+    aria-hidden="true"
+  ></div>
+  <div class="absolute inset-0" aria-hidden="true">
+    {
+      pixels.map(({ top, left, color }) => (
+        <div
+          class="absolute h-7 w-7 md:h-8 md:w-8"
+          style={`top: ${top}; left: ${left}; background-color: ${color};`}
+        />
+      ))
+    }
+  </div>
+</section>

@@ -1,110 +1,52 @@
 ---
-const pixels = [
-  { top: "12%", left: "18%", color: "#fff5e1" },
-  { top: "12%", left: "26%", color: "#ffffff" },
-  { top: "22%", left: "34%", color: "#fff5e1" },
-  { top: "18%", left: "48%", color: "#a80000" },
-  { top: "28%", left: "56%", color: "#fff5e1" },
-  { top: "32%", left: "22%", color: "#a80000" },
-  { top: "38%", left: "42%", color: "#ffffff" },
-  { top: "44%", left: "62%", color: "#fff5e1" },
-  { top: "48%", left: "30%", color: "#fff5e1" },
-  { top: "52%", left: "50%", color: "#a80000" },
-  { top: "58%", left: "18%", color: "#ffffff" },
-  { top: "62%", left: "38%", color: "#fff5e1" },
-  { top: "66%", left: "58%", color: "#a80000" },
-  { top: "70%", left: "26%", color: "#fff5e1" },
-  { top: "74%", left: "46%", color: "#ffffff" },
-  { top: "78%", left: "66%", color: "#fff5e1" },
+import HeroTopLeft from "@/components/landing-page/hero-top-left.astro"
+import HeroAecPanel from "@/components/landing-page/hero-aec-panel.astro"
+import HeroBottomLeft from "@/components/landing-page/hero-bottom-left.astro"
+import HeroBottomRight from "@/components/landing-page/hero-bottom-right.astro"
+import HeroContinuation from "@/components/landing-page/hero-continuation.astro"
+import PageSections from "@/components/landing-page/page-sections.astro"
+
+const heroSlides = [
+  {
+    id: "aec",
+    headline: "Design software for people who design buildings.",
+    subtext: "We build tailored software systems for the AEC industry.",
+    image: "/hero-AEC.png",
+    flippedImage: "/hero-AEC-flipped.png",
+  },
+  {
+    id: "marketing",
+    headline: "Sites for businesses worth showing off.",
+    subtext: "We build marketing sites for brands that need to stand out.",
+    image: "/hero-marketing.png",
+    flippedImage: "/hero-marketing-flipped.png",
+  },
+  {
+    id: "software",
+    headline: "We build the software you've been working around.",
+    subtext: "We build custom software for teams for whom off-the-shelf tools have failed.",
+    image: "/hero-software.png",
+    flippedImage: "/hero-software-flipped.png",
+  },
 ]
 ---
 
 <div class="mt-[50px]">
-<main
-  data-hero-main
-  class="relative grid h-[calc(100svh-50px)] grid-cols-3 grid-rows-[3fr_2fr] items-stretch overflow-hidden"
->
-  <!-- Top-left -->
-  <section
-    data-hero-top-left
-    class="relative col-span-2 row-start-1 min-h-0 px-8 py-10 md:px-12 md:py-14 will-change-transform"
+  <main
+    data-hero-main
+    data-hero-slides={JSON.stringify(heroSlides)}
+    class="relative grid h-[calc(100svh-50px)] grid-cols-3 grid-rows-[3fr_2fr] items-stretch overflow-hidden"
   >
-    <svg
-      class="mb-6 h-3 w-8 text-[#ff0000]"
-      viewBox="0 0 32 12"
-      fill="none"
-      aria-hidden="true"
-    >
-      <rect x="1" y="1" width="30" height="10" stroke="currentColor" stroke-width="1.5"></rect>
-      <line x1="16" y1="1" x2="16" y2="11" stroke="currentColor" stroke-width="1"></line>
-    </svg>
-    <h1
-      class="font-heading max-w-2xl text-[clamp(1.75rem,3.5vw,3.25rem)] leading-[1.08] font-bold tracking-tight text-[#2a2a2a]"
-    >
-      Design software for people who design buildings.
-    </h1>
-  </section>
-
-  <!-- Top-right -->
-  <div
-    data-hero-aec-cell
-    class="relative col-span-1 col-start-3 row-start-1 min-h-0"
-  >
-    <section
-      data-hero-aec
-      class="absolute inset-0 bg-[#FDE9C1] px-6 py-10 md:px-8 md:py-14 border-l border-[#BA0000] will-change-[top,left,width,height]"
-    >
-      <p
-        class="max-w-[80%] text-3xl leading-snug font-medium text-[#1a1a1a]"
-      >
-        We build tailored software systems for the AEC industry.
-      </p>
-      <img
-        data-hero-aec-logo
-        src="/hero-AEC.png"
-        alt="AEC skyline illustration"
-        class="absolute right-0 bottom-0 h-[60px] w-[200px] object-contain object-bottom-right will-change-[width,height]"
-      />
-    </section>
-  </div>
-
-  <!-- Bottom-left -->
-  <section
-    data-hero-bottom-left
-    class="relative col-span-1 row-start-2 min-h-0 flex items-end px-6 pb-8 md:px-8 md:pb-10 border-t border-[#BA0000] will-change-transform"
-  >
-  
-  </section>
-
-  <!-- Bottom-right -->
-  <section
-    data-hero-bottom-right
-    class="relative col-span-2 row-start-2 min-h-0 overflow-hidden bg-[#BA0000] will-change-transform"
-  >
-    <div
-      class="pointer-events-none absolute inset-0 opacity-20"
-      style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"
-      aria-hidden="true"
-    ></div>
-    <div class="absolute inset-0" aria-hidden="true">
-      {
-        pixels.map(({ top, left, color }) => (
-          <div
-            class="absolute h-7 w-7 md:h-8 md:w-8"
-            style={`top: ${top}; left: ${left}; background-color: ${color};`}
-          />
-        ))
-      }
-    </div>
-  </section>
-</main>
+    <HeroTopLeft slides={heroSlides} />
+    <HeroAecPanel slides={heroSlides} />
+    <HeroBottomLeft />
+    <HeroBottomRight />
+  </main>
 </div>
 
-<section class="min-h-[100svh] px-8 py-24 md:px-12">
-  <p class="font-heading max-w-3xl text-[clamp(1.5rem,3vw,2.5rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]">
-    Software that fits how your team actually works.
-  </p>
-</section>
+<HeroContinuation slides={heroSlides} />
+
+<PageSections />
 
 <script>
   import gsap from "gsap"
@@ -112,26 +54,172 @@ const pixels = [
 
   gsap.registerPlugin(ScrollTrigger)
 
+  type HeroSlide = {
+    id: string
+    headline: string
+    subtext: string
+    image: string
+    flippedImage: string
+  }
+
   let ctx: gsap.Context | undefined
+  let cycleTimeline: gsap.core.Timeline | undefined
+  let cycleDelay: gsap.core.Tween | undefined
+  let activeSlide = 0
+  let heroExpandProgress = 0
+  let scrollTriggerInstance: ScrollTrigger | undefined
+  let heroSlides: HeroSlide[] = []
+  let heroUiReady = false
+  let applyHeroFrame: ((progress: number) => void) | undefined
+
+  function getActiveLogo(panel: HTMLElement) {
+    return panel.querySelector<HTMLImageElement>(
+      `[data-hero-aec-logo][data-slide="${activeSlide}"]`,
+    )
+  }
+
+  function setIndicator(index: number) {
+    document.querySelectorAll("[data-hero-indicator]").forEach((button, i) => {
+      button.setAttribute("aria-current", i === index ? "true" : "false")
+      button.classList.toggle("bg-[#ff0000]", i === index)
+      button.classList.toggle("bg-transparent", i !== index)
+    })
+  }
+
+  function setSlideVisibility(slideElements: Element[], visibleIndex: number) {
+    slideElements.forEach((element, index) => {
+      if (index === visibleIndex) {
+        gsap.set(element, { opacity: 1, clearProps: "position,inset,top,right,bottom,left" })
+      } else {
+        gsap.set(element, { opacity: 0, position: "absolute", inset: 0 })
+      }
+    })
+  }
+
+  function setLogoVisibility(logos: Element[], visibleIndex: number) {
+    logos.forEach((logo, index) => {
+      gsap.set(logo, { opacity: index === visibleIndex ? 1 : 0 })
+    })
+  }
+
+  function updateVerticalSections(activeIndex: number) {
+    document.querySelectorAll("[data-vertical-section]").forEach((section) => {
+      const slide = Number(section.getAttribute("data-slide"))
+      section.classList.toggle("hidden", slide !== activeIndex)
+    })
+  }
+
+  function goToSlide(index: number) {
+    const slideCount = heroSlides.length
+    const nextIndex = ((index % slideCount) + slideCount) % slideCount
+    if (nextIndex === activeSlide) return
+
+    const prevIndex = activeSlide
+    const headlines = gsap.utils.toArray<Element>("[data-hero-headline]")
+    const subtexts = gsap.utils.toArray<Element>("[data-hero-subtext]")
+    const continuations = gsap.utils.toArray<Element>("[data-hero-continuation]")
+    const logos = gsap.utils.toArray<Element>("[data-hero-aec-logo]")
+
+    cycleTimeline?.kill()
+
+    gsap.set([headlines[nextIndex], subtexts[nextIndex], continuations[nextIndex]], {
+      position: "absolute",
+      inset: 0,
+      opacity: 0,
+    })
+    gsap.set(logos[nextIndex], { opacity: 0 })
+
+    cycleTimeline = gsap.timeline({
+      onComplete: () => {
+        activeSlide = nextIndex
+        setIndicator(nextIndex)
+        setSlideVisibility(headlines, nextIndex)
+        setSlideVisibility(subtexts, nextIndex)
+        setSlideVisibility(continuations, nextIndex)
+        setLogoVisibility(logos, nextIndex)
+        updateVerticalSections(nextIndex)
+        if (heroExpandProgress <= 0.001) {
+          applyHeroFrame?.(0)
+        }
+      },
+    })
+
+    cycleTimeline.to(
+      [headlines[prevIndex], subtexts[prevIndex], continuations[prevIndex], logos[prevIndex]],
+      { opacity: 0, duration: 0.6, ease: "power2.inOut" },
+      0,
+    )
+
+    cycleTimeline.to(
+      [headlines[nextIndex], subtexts[nextIndex], continuations[nextIndex], logos[nextIndex]],
+      { opacity: 1, duration: 0.6, ease: "power2.inOut" },
+      0,
+    )
+  }
+
+  function stopCycle() {
+    cycleDelay?.kill()
+  }
+
+  function startCycle() {
+    stopCycle()
+
+    const scheduleNext = () => {
+      cycleDelay = gsap.delayedCall(6, () => {
+        if (heroExpandProgress <= 0.001) {
+          goToSlide(activeSlide + 1)
+        }
+        scheduleNext()
+      })
+    }
+
+    scheduleNext()
+  }
+
+  function initHeroCycle() {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReducedMotion) return
+
+    heroSlides.forEach((slide) => {
+      const img = new Image()
+      img.src = slide.image
+    })
+
+    if (!heroUiReady) {
+      heroUiReady = true
+      document.querySelector("[data-hero-indicators]")?.addEventListener("click", (event) => {
+        const button = (event.target as Element | null)?.closest("[data-hero-indicator]")
+        if (!button) return
+
+        const index = Number(button.getAttribute("data-hero-indicator"))
+        goToSlide(index)
+        startCycle()
+      })
+    }
+
+    startCycle()
+  }
 
   function initHeroAecExpand() {
     ctx?.revert()
+    scrollTriggerInstance = undefined
 
     const main = document.querySelector<HTMLElement>("[data-hero-main]")
     const panel = document.querySelector<HTMLElement>("[data-hero-aec]")
     const cell = document.querySelector<HTMLElement>("[data-hero-aec-cell]")
-
     const topLeft = document.querySelector<HTMLElement>("[data-hero-top-left]")
     const bottomLeft = document.querySelector<HTMLElement>("[data-hero-bottom-left]")
     const bottomRight = document.querySelector<HTMLElement>("[data-hero-bottom-right]")
-    const logo = panel?.querySelector<HTMLImageElement>("[data-hero-aec-logo]")
 
-    if (!main || !panel || !cell || !topLeft || !bottomLeft || !bottomRight || !logo) return
+    if (!main || !panel || !cell || !topLeft || !bottomLeft || !bottomRight) return
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (prefersReducedMotion) return
 
     const run = () => {
+      const logo = getActiveLogo(panel)
+      if (!logo) return
+
       ctx = gsap.context(() => {
         const getCellMetrics = () => {
           const mainRect = main.getBoundingClientRect()
@@ -151,12 +239,14 @@ const pixels = [
         const bottomRowTop =
           bottomLeft.getBoundingClientRect().top - main.getBoundingClientRect().top
 
-        const logoAspect =
-          logo.naturalWidth > 0 ? logo.naturalWidth / logo.naturalHeight : logo.offsetWidth / logo.offsetHeight
-        const logoStart = { width: logo.offsetWidth, height: logo.offsetHeight }
-        const logoEnd = () => ({
+        const getLogoAspect = (activeLogo: HTMLImageElement) =>
+          activeLogo.naturalWidth > 0
+            ? activeLogo.naturalWidth / activeLogo.naturalHeight
+            : activeLogo.offsetWidth / activeLogo.offsetHeight
+
+        const logoEnd = (activeLogo: HTMLImageElement) => ({
           width: window.innerWidth,
-          height: window.innerWidth / logoAspect,
+          height: window.innerWidth / getLogoAspect(activeLogo),
         })
 
         const expanded = () => ({
@@ -177,8 +267,12 @@ const pixels = [
         }
 
         const applyFrame = (progress: number) => {
+          const activeLogo = getActiveLogo(panel)
+          if (!activeLogo) return
+
           const panelRect = getPanelRect(progress)
-          const endLogo = logoEnd()
+          const logoStart = { width: 200, height: 60 }
+          const endLogo = logoEnd(activeLogo)
 
           gsap.set(panel, {
             top: panelRect.top,
@@ -191,18 +285,27 @@ const pixels = [
           gsap.set(bottomLeft, { y: Math.max(0, panelRect.bottom - bottomRowTop) })
           gsap.set(bottomRight, { y: Math.max(0, panelRect.bottom - bottomRowTop) })
 
-          gsap.set(logo, {
-            width: gsap.utils.interpolate(logoStart.width, endLogo.width, progress),
-            height: gsap.utils.interpolate(logoStart.height, endLogo.height, progress),
+          panel.querySelectorAll<HTMLImageElement>("[data-hero-aec-logo]").forEach((img) => {
+            const isActive = img === activeLogo
+            gsap.set(img, {
+              opacity: isActive ? 1 : 0,
+              width: isActive
+                ? gsap.utils.interpolate(logoStart.width, endLogo.width, progress)
+                : logoStart.width,
+              height: isActive
+                ? gsap.utils.interpolate(logoStart.height, endLogo.height, progress)
+                : logoStart.height,
+            })
           })
         }
 
         gsap.set(panel, { position: "absolute" })
+        applyHeroFrame = applyFrame
         applyFrame(0)
 
         const headerHeight = document.querySelector("header")?.offsetHeight ?? 50
 
-        ScrollTrigger.create({
+        scrollTriggerInstance = ScrollTrigger.create({
           trigger: main,
           start: `top ${headerHeight}px`,
           end: "+=100%",
@@ -210,23 +313,27 @@ const pixels = [
           scrub: true,
           anticipatePin: 1,
           onUpdate: (self) => {
+            heroExpandProgress = self.progress
             applyFrame(self.progress)
           },
           onLeave: () => {
             gsap.set(panel, { top: 0, left: 0, width: "100%", height: "100%" })
+            heroExpandProgress = 1
             applyFrame(1)
           },
           onLeaveBack: () => {
+            heroExpandProgress = 0
             applyFrame(0)
           },
         })
       }, main)
     }
 
-    if (logo.complete && logo.naturalWidth > 0) {
+    const logo = getActiveLogo(panel)
+    if (logo && logo.complete && logo.naturalWidth > 0) {
       run()
     } else {
-      logo.addEventListener("load", run, { once: true })
+      logo?.addEventListener("load", run, { once: true })
     }
   }
 
@@ -234,9 +341,21 @@ const pixels = [
 
   function scheduleInit() {
     clearTimeout(initTimeout)
-    initTimeout = setTimeout(initHeroAecExpand, 0)
+    stopCycle()
+    applyHeroFrame = undefined
+
+    const main = document.querySelector<HTMLElement>("[data-hero-main]")
+    heroSlides = main?.dataset.heroSlides ? JSON.parse(main.dataset.heroSlides) : []
+    activeSlide = 0
+    heroExpandProgress = 0
+
+    initTimeout = setTimeout(() => {
+      updateVerticalSections(activeSlide)
+      initHeroCycle()
+      initHeroAecExpand()
+    }, 0)
   }
 
-  scheduleInit()
   document.addEventListener("astro:page-load", scheduleInit)
+  scheduleInit()
 </script>

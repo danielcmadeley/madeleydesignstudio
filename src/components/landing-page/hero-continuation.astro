@@ -1,0 +1,39 @@
+---
+interface HeroSlide {
+  id: string
+  flippedImage: string
+}
+
+interface Props {
+  slides: HeroSlide[]
+}
+
+const { slides } = Astro.props
+---
+
+<section class="relative bg-[#FDE9C1]">
+  <div class="relative">
+    {
+      slides.map((slide, index) => (
+        <img
+          data-hero-continuation
+          data-slide={index}
+          src={slide.flippedImage}
+          alt=""
+          aria-hidden="true"
+          class:list={[
+            "block w-full h-auto",
+            index === 0 ? "relative" : "absolute inset-0 opacity-0",
+          ]}
+        />
+      ))
+    }
+  </div>
+  <div class="min-h-svh px-8 py-24 md:px-12">
+    <p
+      class="font-heading max-w-3xl text-[clamp(1.5rem,3vw,2.5rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]"
+    >
+      Software that fits how your team actually works.
+    </p>
+  </div>
+</section>
