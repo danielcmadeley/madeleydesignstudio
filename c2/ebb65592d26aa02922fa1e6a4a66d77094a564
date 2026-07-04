@@ -1,0 +1,19 @@
+wrangler.jsonc
+  s_b052ebdc9e306a::t_129dbc58367d4b 1-8
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "c2ebb65592d26aa02922fa1e6a4a66d77094a564",
+  "prompts": {},
+  "sessions": {
+    "s_b052ebdc9e306a": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "9d1ac30c-301f-4179-b364-4ea8e485b818",
+        "model": "composer-2.5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
