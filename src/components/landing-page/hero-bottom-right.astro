@@ -1,21 +1,51 @@
 ---
+const frameColor = "#F8EACD"
+const frameInsetX = "12.5%"
+const cols = 28
+const rows = 6
+
 const pixels = [
-  { top: "12%", left: "18%", color: "#fff5e1" },
-  { top: "12%", left: "26%", color: "#ffffff" },
-  { top: "22%", left: "34%", color: "#fff5e1" },
-  { top: "18%", left: "48%", color: "#a80000" },
-  { top: "28%", left: "56%", color: "#fff5e1" },
-  { top: "32%", left: "22%", color: "#a80000" },
-  { top: "38%", left: "42%", color: "#ffffff" },
-  { top: "44%", left: "62%", color: "#fff5e1" },
-  { top: "48%", left: "30%", color: "#fff5e1" },
-  { top: "52%", left: "50%", color: "#a80000" },
-  { top: "58%", left: "18%", color: "#ffffff" },
-  { top: "62%", left: "38%", color: "#fff5e1" },
-  { top: "66%", left: "58%", color: "#a80000" },
-  { top: "70%", left: "26%", color: "#fff5e1" },
-  { top: "74%", left: "46%", color: "#ffffff" },
-  { top: "78%", left: "66%", color: "#fff5e1" },
+  { col: 14, row: 0, color: "#fff5e1", tier: 1 },
+  { col: 15, row: 0, color: "#fff5e1", tier: 2 },
+  { col: 17, row: 0, color: "#da1413", tier: 3 },
+  { col: 5, row: 1, color: "#fff5e1", tier: 2 },
+  { col: 14, row: 1, color: "#fff5e1", tier: 1 },
+  { col: 17, row: 1, color: "#da1413", tier: 3 },
+  { col: 19, row: 1, color: "#da1413", tier: 1 },
+  { col: 15, row: 1, color: "#fff5e1", tier: 2 },
+  { col: 6, row: 2, color: "#fff5e1", tier: 3 },
+  { col: 7, row: 2, color: "#fff5e1", tier: 1 },
+  { col: 10, row: 2, color: "#da1413", tier: 3 },
+  { col: 16, row: 2, color: "#da1413", tier: 2 },
+  { col: 19, row: 2, color: "#fff5e1", tier: 1 },
+  { col: 2, row: 3, color: "#fff5e1", tier: 2 },
+  { col: 3, row: 3, color: "#fff5e1", tier: 3 },
+  { col: 5, row: 3, color: "#da1413", tier: 1 },
+  { col: 10, row: 3, color: "#da1413", tier: 3 },
+  { col: 11, row: 3, color: "#da1413", tier: 1 },
+  { col: 17, row: 3, color: "#da1413", tier: 3 },
+  { col: 20, row: 3, color: "#fff5e1", tier: 2 },
+  { col: 4, row: 4, color: "#da1413", tier: 3 },
+  { col: 8, row: 4, color: "#fff5e1", tier: 1 },
+  { col: 11, row: 4, color: "#da1413", tier: 2 },
+  { col: 12, row: 4, color: "#fff5e1", tier: 3 },
+  { col: 16, row: 4, color: "#fff5e1", tier: 1 },
+  { col: 19, row: 4, color: "#fff5e1", tier: 2 },
+  { col: 1, row: 5, color: "#fff5e1", tier: 3 },
+  { col: 3, row: 5, color: "#fff5e1", tier: 1 },
+  { col: 4, row: 5, color: "#da1413", tier: 2 },
+  { col: 5, row: 5, color: "#da1413", tier: 3 },
+  { col: 11, row: 5, color: "#da1413", tier: 2 },
+  { col: 14, row: 5, color: "#fff5e1", tier: 1 },
+  { col: 15, row: 5, color: "#fff5e1", tier: 2 },
+  { col: 16, row: 5, color: "#fff5e1", tier: 3 },
+]
+
+const corners = [
+  { position: "top-5 md:top-6", edge: "left", translate: "-translate-x-1/2 -translate-y-1/2" },
+  { position: "top-5 md:top-6", edge: "right", translate: "translate-x-1/2 -translate-y-1/2" },
+  { position: "bottom-5 md:bottom-6", edge: "left", translate: "-translate-x-1/2 translate-y-1/2" },
+  { position: "bottom-5 md:bottom-6", edge: "right", translate: "translate-x-1/2 translate-y-1/2" },
 ]
 ---
 
@@ -24,18 +54,299 @@ const pixels = [
   class="relative col-span-2 row-start-2 min-h-0 overflow-hidden bg-[#BA0000] will-change-transform"
 >
   <div
-    class="pointer-events-none absolute inset-0 opacity-20"
-    style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 48px 48px;"
+    class="pointer-events-none absolute top-5 right-0 left-0 h-px md:top-6"
+    style={`background-color: ${frameColor}`}
     aria-hidden="true"
   ></div>
-  <div class="absolute inset-0" aria-hidden="true">
+  <div
+    class="pointer-events-none absolute right-0 bottom-5 left-0 h-px md:bottom-6"
+    style={`background-color: ${frameColor}`}
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute top-0 bottom-0 w-px"
+    style={`left: ${frameInsetX}; background-color: ${frameColor}`}
+    aria-hidden="true"
+  ></div>
+  <div
+    class="pointer-events-none absolute top-0 bottom-0 w-px"
+    style={`right: ${frameInsetX}; background-color: ${frameColor}`}
+    aria-hidden="true"
+  ></div>
+
+  {
+    corners.map(({ position, edge, translate }) => (
+      <div
+        class:list={["pointer-events-none absolute h-[5px] w-[5px]", position, translate]}
+        style={`${edge}: ${frameInsetX}; background-color: ${frameColor}`}
+        aria-hidden="true"
+      />
+    ))
+  }
+
+  <div
+    data-hero-pixel-arena
+    data-cols={cols}
+    data-rows={rows}
+    data-pixels={JSON.stringify(pixels)}
+    class="absolute top-5 bottom-5 overflow-hidden md:top-6 md:bottom-6"
+    style={`left: ${frameInsetX}; right: ${frameInsetX}`}
+    aria-hidden="true"
+  >
     {
-      pixels.map(({ top, left, color }) => (
+      pixels.map((pixel) => (
         <div
-          class="absolute h-7 w-7 md:h-8 md:w-8"
-          style={`top: ${top}; left: ${left}; background-color: ${color};`}
+          data-hero-pixel
+          data-col={pixel.col}
+          data-row={pixel.row}
+          data-tier={pixel.tier}
+          class="absolute top-0 left-0 opacity-50 will-change-transform"
+          style={`background-color: ${pixel.color}`}
         />
       ))
     }
   </div>
 </section>
+
+<script>
+  type PixelData = {
+    col: number
+    row: number
+    color: string
+    tier: 1 | 2 | 3
+  }
+
+  type PixelBody = {
+    el: HTMLDivElement
+    x: number
+    y: number
+    vx: number
+    vy: number
+    size: number
+    tier: 1 | 2 | 3
+  }
+
+  const TIER_CONFIG: Record<
+    1 | 2 | 3,
+    { scale: number; minSpeed: number; maxSpeed: number }
+  > = {
+    1: { scale: 1, minSpeed: 0.04, maxSpeed: 0.09 },
+    2: { scale: 1.6, minSpeed: 0.08, maxSpeed: 0.15 },
+    3: { scale: 2.4, minSpeed: 0.12, maxSpeed: 0.22 },
+  }
+
+  let frameId: number | undefined
+  let resizeObserver: ResizeObserver | undefined
+
+  function randomSpeed(tier: 1 | 2 | 3) {
+    const { minSpeed, maxSpeed } = TIER_CONFIG[tier]
+    const angle = Math.random() * Math.PI * 2
+    const speed = minSpeed + Math.random() * (maxSpeed - minSpeed)
+
+    return {
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+    }
+  }
+
+  function clampSpeed(body: PixelBody) {
+    const { minSpeed, maxSpeed } = TIER_CONFIG[body.tier]
+    const speed = Math.hypot(body.vx, body.vy)
+
+    if (speed > maxSpeed) {
+      body.vx = (body.vx / speed) * maxSpeed
+      body.vy = (body.vy / speed) * maxSpeed
+      return
+    }
+
+    if (speed < minSpeed) {
+      const angle = speed > 0 ? Math.atan2(body.vy, body.vx) : Math.random() * Math.PI * 2
+      body.vx = Math.cos(angle) * minSpeed
+      body.vy = Math.sin(angle) * minSpeed
+    }
+  }
+
+  function resolveCollision(a: PixelBody, b: PixelBody) {
+    const centerAx = a.x + a.size / 2
+    const centerAy = a.y + a.size / 2
+    const centerBx = b.x + b.size / 2
+    const centerBy = b.y + b.size / 2
+    const dx = centerAx - centerBx
+    const dy = centerAy - centerBy
+    const half = a.size / 2 + b.size / 2
+    const overlapX = half - Math.abs(dx)
+    const overlapY = half - Math.abs(dy)
+
+    if (overlapX <= 0 || overlapY <= 0) return
+
+    if (overlapX < overlapY) {
+      const massA = a.size * a.size
+      const massB = b.size * b.size
+      const totalMass = massA + massB
+      const push = overlapX
+
+      if (dx > 0) {
+        a.x += (push * massB) / totalMass
+        b.x -= (push * massA) / totalMass
+      } else {
+        a.x -= (push * massB) / totalMass
+        b.x += (push * massA) / totalMass
+      }
+
+      const velocityA = a.vx
+      const velocityB = b.vx
+      a.vx = ((massA - massB) * velocityA + 2 * massB * velocityB) / totalMass
+      b.vx = ((massB - massA) * velocityB + 2 * massA * velocityA) / totalMass
+      return
+    }
+
+    const massA = a.size * a.size
+    const massB = b.size * b.size
+    const totalMass = massA + massB
+    const push = overlapY
+
+    if (dy > 0) {
+      a.y += (push * massB) / totalMass
+      b.y -= (push * massA) / totalMass
+    } else {
+      a.y -= (push * massB) / totalMass
+      b.y += (push * massA) / totalMass
+    }
+
+    const velocityA = a.vy
+    const velocityB = b.vy
+    a.vy = ((massA - massB) * velocityA + 2 * massB * velocityB) / totalMass
+    b.vy = ((massB - massA) * velocityB + 2 * massA * velocityA) / totalMass
+  }
+
+  function bounceOffWalls(body: PixelBody, width: number, height: number) {
+    if (body.x <= 0) {
+      body.x = 0
+      body.vx = Math.abs(body.vx)
+    }
+
+    if (body.y <= 0) {
+      body.y = 0
+      body.vy = Math.abs(body.vy)
+    }
+
+    if (body.x + body.size >= width) {
+      body.x = width - body.size
+      body.vx = -Math.abs(body.vx)
+    }
+
+    if (body.y + body.size >= height) {
+      body.y = height - body.size
+      body.vy = -Math.abs(body.vy)
+    }
+  }
+
+  function applyTransform(body: PixelBody) {
+    body.el.style.width = `${body.size}px`
+    body.el.style.height = `${body.size}px`
+    body.el.style.transform = `translate3d(${body.x}px, ${body.y}px, 0)`
+  }
+
+  function initHeroPixelBounce() {
+    if (frameId) {
+      cancelAnimationFrame(frameId)
+      frameId = undefined
+    }
+
+    resizeObserver?.disconnect()
+    resizeObserver = undefined
+
+    const arena = document.querySelector<HTMLElement>("[data-hero-pixel-arena]")
+    if (!arena) return
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const cols = Number(arena.dataset.cols)
+    const rows = Number(arena.dataset.rows)
+    const pixelData: PixelData[] = arena.dataset.pixels ? JSON.parse(arena.dataset.pixels) : []
+    const elements = Array.from(arena.querySelectorAll<HTMLDivElement>("[data-hero-pixel]"))
+
+    if (!cols || !rows || pixelData.length === 0 || elements.length === 0) return
+
+    const bodies: PixelBody[] = []
+
+    const layout = () => {
+      const width = arena.clientWidth
+      const height = arena.clientHeight
+      const baseUnit = Math.min(width / cols, height / rows)
+
+      pixelData.forEach((pixel, index) => {
+        const el = elements[index]
+        if (!el) return
+
+        const tier = pixel.tier
+        const size = baseUnit * TIER_CONFIG[tier].scale
+        const startX = pixel.col * baseUnit + (baseUnit - size) / 2
+        const startY = pixel.row * baseUnit + (baseUnit - size) / 2
+        let body = bodies[index]
+
+        if (!body) {
+          const velocity = randomSpeed(tier)
+          body = {
+            el,
+            x: startX,
+            y: startY,
+            vx: velocity.vx,
+            vy: velocity.vy,
+            size,
+            tier,
+          }
+          bodies[index] = body
+        } else {
+          body.size = size
+          body.tier = tier
+          body.x = Math.min(Math.max(body.x, 0), Math.max(0, width - size))
+          body.y = Math.min(Math.max(body.y, 0), Math.max(0, height - size))
+        }
+
+        applyTransform(body)
+      })
+
+      return { width, height, baseUnit }
+    }
+
+    let bounds = layout()
+
+    resizeObserver = new ResizeObserver(() => {
+      bounds = layout()
+    })
+    resizeObserver.observe(arena)
+
+    if (prefersReducedMotion) return
+
+    const step = () => {
+      const { width, height } = bounds
+
+      for (const body of bodies) {
+        body.x += body.vx
+        body.y += body.vy
+        bounceOffWalls(body, width, height)
+        body.x = Math.max(0, Math.min(body.x, width - body.size))
+        body.y = Math.max(0, Math.min(body.y, height - body.size))
+        clampSpeed(body)
+      }
+
+      for (let i = 0; i < bodies.length; i++) {
+        for (let j = i + 1; j < bodies.length; j++) {
+          resolveCollision(bodies[i], bodies[j])
+        }
+      }
+
+      for (const body of bodies) {
+        clampSpeed(body)
+        applyTransform(body)
+      }
+
+      frameId = requestAnimationFrame(step)
+    }
+
+    frameId = requestAnimationFrame(step)
+  }
+
+  document.addEventListener("astro:page-load", initHeroPixelBounce)
+  initHeroPixelBounce()
+</script>

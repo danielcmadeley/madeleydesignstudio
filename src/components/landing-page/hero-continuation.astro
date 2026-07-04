@@ -12,7 +12,7 @@ const { slides } = Astro.props
 ---
 
 <section class="relative bg-[#FDE9C1]">
-  <div class="relative">
+  <div class="grid">
     {
       slides.map((slide, index) => (
         <img
@@ -22,8 +22,8 @@ const { slides } = Astro.props
           alt=""
           aria-hidden="true"
           class:list={[
-            "block w-full h-auto",
-            index === 0 ? "relative" : "absolute inset-0 opacity-0",
+            "col-start-1 row-start-1 block h-auto w-full",
+            index === 0 ? "opacity-100" : "opacity-0",
           ]}
         />
       ))
