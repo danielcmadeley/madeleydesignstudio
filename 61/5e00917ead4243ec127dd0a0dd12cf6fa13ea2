@@ -1,0 +1,65 @@
+src/components/universal/header.astro
+  h_c71e0cdb2092d3 1-19
+src/layouts/main.astro
+  h_c71e0cdb2092d3 3,11
+  s_871d78f2952c12::t_c7fd9fdbf849a2 14
+src/styles/global.css
+  h_c71e0cdb2092d3 126
+package.json
+  s_871d78f2952c12::t_9e7cb2cdfb0bcf 24,31-36,38,40-41,43-44
+src/pages/index.astro
+  s_871d78f2952c12::t_5579caa01a8fea 7
+  h_c71e0cdb2092d3 3
+src/components/landing-page/hero-grid.astro
+  s_56002a7e8888a7::t_91702b37b7162b 167
+  s_56002a7e8888a7::t_6c5ed6f8c26b74 66
+  s_56002a7e8888a7::t_92336381fc47c4 28,31
+  s_56002a7e8888a7::t_3f0b82d0bbd480 51-62,64,67-69
+  s_56002a7e8888a7::t_6af26cd8df677b 134-145,147-166,168-198,200-230
+  s_56002a7e8888a7::t_3b3557af7178ab 25,29-30
+  s_56002a7e8888a7::t_d23530c1db3351 199
+  s_56002a7e8888a7::t_911b20347083b3 124-126,128
+  s_56002a7e8888a7::t_bc2d8a114c472a 122
+  s_56002a7e8888a7::t_b73ab566968183 233-241
+  s_56002a7e8888a7::t_2c4fd2788a85b2 22,24
+  s_56002a7e8888a7::t_5e4973261fd9bb 127,129
+  s_56002a7e8888a7::t_f18f98d4ad8541 146
+  h_c71e0cdb2092d3 1-21,23,26-27,32-48,70-71,76-79,84-100
+  s_56002a7e8888a7::t_78a3d4680331c5 63,65
+  s_56002a7e8888a7::t_3006a70cabacef 72-75
+  s_56002a7e8888a7::t_2835988de6fe87 80-83
+  s_56002a7e8888a7::t_79cb14de76b529 49-50
+  s_56002a7e8888a7::t_20a8cbae927149 101-121,123,130-131,133,231-232,242
+  s_56002a7e8888a7::t_e4d8de04030097 132
+bun.lock
+  s_871d78f2952c12::t_182dd443228c89 13,20-25,27,29-30,32-33,144-145,330-363,420-421,440-443,484-501,524-525,592-593,658-659,706-729,734-735,760-761,788-793,818-819,928-929,948-949,996-997,1004-1007,1242-1243,1366-1367,1370-1373,1376-1383,1388-1393,1424,1492-1493,1520-1521,1612-1615,1630-1631,1720-1721,1734-1737
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "615e00917ead4243ec127dd0a0dd12cf6fa13ea2",
+  "prompts": {},
+  "humans": {
+    "h_c71e0cdb2092d3": {
+      "author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  },
+  "sessions": {
+    "s_56002a7e8888a7": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "c1b3f263-1af4-4ef0-9ec8-2f9ff6fa983d",
+        "model": "composer-2.5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    },
+    "s_871d78f2952c12": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "5f2033c7-bfc4-4627-8351-ef51a3a0b180",
+        "model": "composer-2.5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
