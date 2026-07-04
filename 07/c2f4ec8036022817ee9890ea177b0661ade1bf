@@ -1,0 +1,64 @@
+src/components/landing-page/hero-bottom-right.astro
+  s_746682c904a7e5::t_6a1a69548233d6 4-6,76,79,82
+  s_746682c904a7e5::t_696fa022ce404b 80
+  s_746682c904a7e5::t_d9e8df25d7ceba 87-91,94-95,97,99-101,104,110-115,117-125,127-128,138-140,143,145-152,154-155,159-161,163,166-182,188,191,194-195,200-202,208,211,214-215,220-274,276-280,285-287,289-290,293-295,297-300,302-308,310-327,330-339,341-352
+  s_746682c904a7e5::t_6aebb649d12bb2 3
+  s_746682c904a7e5::t_8a91fca0e21f2f 328-329
+  s_746682c904a7e5::t_db6859374155ab 8-14,16-30,32-41
+  s_746682c904a7e5::t_81415e2a91d64d 45-48
+  s_746682c904a7e5::t_5c8629b682cca6 15
+  s_746682c904a7e5::t_d3472ec237aaec 103
+  s_746682c904a7e5::t_b8174068c809fe 275,281-284,288,291-292,296,301,309
+  s_746682c904a7e5::t_30ff60aac50c14 340
+  s_746682c904a7e5::t_47dfefb41a7f58 102
+  s_746682c904a7e5::t_808de86d004c3b 31
+  s_746682c904a7e5::t_75399c83851d15 116,126,129-137,141-142,144,153,156-158,162,164-165
+  s_746682c904a7e5::t_429cb834d3d03d 183-185,187,189-190,192-193,196-199,203-205,207,209-210,212-213,216-219
+  s_746682c904a7e5::t_0477d0267c2ead 2,43-44,57-66,71,74-75,77,83-86
+  s_746682c904a7e5::t_db819d8c1256ce 186,206
+  s_746682c904a7e5::t_046f282da319c9 67-68,72-73,78,81,92-93
+  s_746682c904a7e5::t_73cc918952be67 42
+src/components/landing-page/hero-top-left.astro
+  s_f206013ac09764::t_607b9e0f16f704 37-42,45-50
+  s_f206013ac09764::t_3d78effda73784 19,21-23,31
+  s_f206013ac09764::t_2e9895c7776561 51
+  s_f206013ac09764::t_7a92ab512ca072 18,24-30,32-35
+  s_f206013ac09764::t_2b056f8724a963 36,43-44
+  s_f206013ac09764::t_c352f8fc0952d9 16
+  h_c71e0cdb2092d3 20
+src/components/landing-page/hero-aec-panel.astro
+  s_f206013ac09764::t_f0f9d3c6e3ce69 23,30-31
+src/components/landing-page/hero-continuation.astro
+  s_f206013ac09764::t_8c73cc8247c26c 15,25-26
+src/components/landing-page/hero-grid.astro
+  s_f206013ac09764::t_5be58fe99780df 89
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "07c2f4ec8036022817ee9890ea177b0661ade1bf",
+  "prompts": {},
+  "humans": {
+    "h_c71e0cdb2092d3": {
+      "author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  },
+  "sessions": {
+    "s_746682c904a7e5": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "55338dc1-439a-4054-b385-ed72b1855e56",
+        "model": "composer-2.5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    },
+    "s_f206013ac09764": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "9c1c2e09-358c-45be-b2ed-514a8d2b13e5",
+        "model": "composer-2.5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
