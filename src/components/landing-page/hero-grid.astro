@@ -5,36 +5,26 @@ import HeroBottomLeft from "@/components/landing-page/hero-bottom-left.astro"
 import HeroBottomRight from "@/components/landing-page/hero-bottom-right.astro"
 import HeroContinuation from "@/components/landing-page/hero-continuation.astro"
 import PageSections from "@/components/landing-page/page-sections.astro"
+import type {
+  HeroSlideView,
+  HomePageContent,
+  VerticalSectionView,
+} from "@/lib/sanity/types"
 
-const heroSlides = [
-  {
-    id: "aec",
-    headline: "Design software for people who design buildings.",
-    subtext: "We build tailored software systems for the AEC industry.",
-    image: "/hero-AEC.png",
-    flippedImage: "/hero-AEC-flipped.png",
-  },
-  {
-    id: "marketing",
-    headline: "Sites for businesses worth showing off.",
-    subtext: "We build marketing sites for brands that need to stand out.",
-    image: "/hero-marketing.png",
-    flippedImage: "/hero-marketing-flipped.png",
-  },
-  {
-    id: "software",
-    headline: "We build the software you've been working around.",
-    subtext: "We build custom software for teams for whom off-the-shelf tools have failed.",
-    image: "/hero-software.png",
-    flippedImage: "/hero-software-flipped.png",
-  },
-]
+interface Props {
+  heroSlides: HeroSlideView[]
+  homePage: HomePageContent
+  verticalSections: VerticalSectionView[]
+}
+
+const { heroSlides, homePage, verticalSections } = Astro.props
 ---
 
 <div class="mt-[50px]">
   <main
     data-hero-main
     data-hero-slides={JSON.stringify(heroSlides)}
+    data-hero-cycle-seconds={homePage.heroCycleSeconds}
     class="relative grid h-[calc(100svh-50px)] grid-cols-3 grid-rows-[3fr_2fr] items-stretch overflow-hidden"
   >
     <HeroTopLeft slides={heroSlides} />
@@ -44,9 +34,16 @@ const heroSlides = [
   </main>
 </div>
 
-<HeroContinuation slides={heroSlides} />
+<HeroContinuation
+  slides={heroSlides}
+  tagline={homePage.continuationTagline}
+/>
 
-<PageSections />
+<PageSections
+  verticalSections={verticalSections}
+  services={homePage.services}
+  footer={homePage.footer}
+/>
 
 <script>
   import gsap from "gsap"
@@ -69,6 +66,7 @@ const heroSlides = [
   let heroExpandProgress = 0
   let scrollTriggerInstance: ScrollTrigger | undefined
   let heroSlides: HeroSlide[] = []
+  let heroCycleSeconds = 6
   let heroUiReady = false
   let applyHeroFrame: ((progress: number) => void) | undefined
 
@@ -157,7 +155,7 @@ const heroSlides = [
     stopCycle()
 
     const scheduleNext = () => {
-      cycleDelay = gsap.delayedCall(6, () => {
+      cycleDelay = gsap.delayedCall(heroCycleSeconds, () => {
         if (heroExpandProgress <= 0.001) {
           goToSlide(activeSlide + 1)
         }
@@ -338,6 +336,7 @@ const heroSlides = [
 
     const main = document.querySelector<HTMLElement>("[data-hero-main]")
     heroSlides = main?.dataset.heroSlides ? JSON.parse(main.dataset.heroSlides) : []
+    heroCycleSeconds = Number(main?.dataset.heroCycleSeconds ?? 6)
     activeSlide = 0
     heroExpandProgress = 0
 

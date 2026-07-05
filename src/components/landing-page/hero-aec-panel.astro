@@ -3,6 +3,7 @@ interface HeroSlide {
   id: string
   subtext: string
   image: string
+  logoImageAlt?: string
 }
 
 interface Props {
@@ -42,7 +43,7 @@ const { slides } = Astro.props
           data-hero-aec-logo
           data-slide={index}
           src={slide.image}
-          alt=""
+          alt={slide.logoImageAlt ?? ""}
           class:list={[
             "absolute right-0 bottom-0 h-[60px] w-[200px] object-contain object-bottom-right will-change-[width,height]",
             index === 0 ? "opacity-100" : "opacity-0",

@@ -1,4 +1,12 @@
 ---
+import type { SiteSettingsContent } from "@/lib/sanity/types"
+
+interface Props {
+  siteSettings: SiteSettingsContent
+}
+
+const { siteSettings } = Astro.props
+const { headerCta } = siteSettings
 ---
 
 <header
@@ -8,12 +16,14 @@
     href="/"
     class="font-heading pl-6 text-sm lowercase text-[#BA0000] no-underline"
   >
-    madeleydesignstudio.
+    {siteSettings.siteName}
   </a>
   <a
-    href="#"
+    href={headerCta.url}
+    target={headerCta.openInNewTab ? "_blank" : undefined}
+    rel={headerCta.openInNewTab ? "noreferrer noopener" : undefined}
     class="flex h-full items-center bg-[#BA0000] px-6 text-sm lowercase text-white no-underline"
   >
-    get your software →
+    {headerCta.label}
   </a>
 </header>

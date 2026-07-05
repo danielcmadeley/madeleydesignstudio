@@ -1,86 +1,67 @@
 ---
-const verticals = [
-  { id: "aec", label: "AEC" },
-  { id: "marketing", label: "Marketing" },
-  { id: "software", label: "Software" },
-]
+import ServicesSection from "@/components/landing-page/services-section.astro"
+import type {
+  PageSection,
+  ServiceContent,
+  VerticalSectionView,
+} from "@/lib/sanity/types"
 
-const uniqueSectionLabels = ["One", "Two", "Three"]
-const sharedSectionLabels = ["One", "Two", "Three"]
+interface Props {
+  verticalSections: VerticalSectionView[]
+  services: ServiceContent[]
+  footer: PageSection
+}
+
+const { verticalSections, services, footer } = Astro.props
 ---
 
 <div data-page-sections>
   {
-    verticals.map((vertical, slideIndex) =>
-      uniqueSectionLabels.map((sectionLabel, sectionIndex) => (
-        <section
-          data-vertical-section
-          data-slide={slideIndex}
-          class:list={[
-            "min-h-svh flex items-end border-t border-[#BA0000] px-8 py-16 md:px-12 md:py-20",
-            slideIndex === 0 ? "bg-[#FDE9C1]" : slideIndex === 1 ? "bg-[#F8EACD]" : "bg-[#fff5e1]",
-            slideIndex !== 0 && "hidden",
-          ]}
-        >
-          <div>
-            <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-[#BA0000]">
-              {vertical.label}
-            </p>
-            <h2
-              class="font-heading max-w-3xl text-[clamp(1.75rem,3vw,2.75rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]"
-            >
-              Unique section {sectionLabel}
-            </h2>
-            <p class="mt-4 max-w-xl text-lg text-[#2a2a2a]/70">
-              Placeholder content for {vertical.label.toLowerCase()} section {sectionIndex + 1}.
-            </p>
-          </div>
-        </section>
-      )),
-    )
-  }
-
-  {
-    sharedSectionLabels.map((sectionLabel, index) => (
+    verticalSections.map((section) => (
       <section
-        data-shared-section
+        data-vertical-section
+        data-slide={section.slideIndex}
+        style={{ backgroundColor: section.backgroundColor }}
         class:list={[
           "min-h-svh flex items-end border-t border-[#BA0000] px-8 py-16 md:px-12 md:py-20",
-          index % 2 === 0 ? "bg-[#F8EACD]" : "bg-[#FDE9C1]",
+          section.slideIndex !== 0 && "hidden",
         ]}
       >
         <div>
           <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-[#BA0000]">
-            Shared
+            {section.eyebrow}
           </p>
           <h2
             class="font-heading max-w-3xl text-[clamp(1.75rem,3vw,2.75rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]"
           >
-            Shared section {sectionLabel}
+            {section.heading}
           </h2>
           <p class="mt-4 max-w-xl text-lg text-[#2a2a2a]/70">
-            Placeholder content shared across all verticals.
+            {section.body}
           </p>
         </div>
       </section>
     ))
   }
 
+  <ServicesSection services={services} />
+
   <footer
     data-page-footer
-    class="min-h-svh flex items-end border-t border-[#BA0000] bg-[#BA0000] px-8 py-16 md:px-12 md:py-20"
+    style={{ backgroundColor: footer.backgroundColor }}
+    class="min-h-svh flex items-end border-t border-[#BA0000] px-8 py-16 md:px-12 md:py-20"
   >
     <div>
       <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-[#FDE9C1]">
-        Footer
+        {footer.eyebrow}
       </p>
       <h2
         class="font-heading max-w-3xl text-[clamp(1.75rem,3vw,2.75rem)] leading-tight font-bold tracking-tight text-white"
       >
-        Shared footer
+        {footer.heading}
       </h2>
       <p class="mt-4 max-w-xl text-lg text-white/80">
-        Placeholder footer content.
+        {footer.body}
       </p>
     </div>
   </footer>

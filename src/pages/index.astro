@@ -1,8 +1,26 @@
 ---
 import Layout from "@/layouts/main.astro"
 import HeroGrid from "@/components/landing-page/hero-grid.astro"
+import {
+  getHomePage,
+  getSiteSettings,
+  toHeroSlides,
+  toVerticalSections,
+} from "@/lib/sanity/content"
+
+const [homePage, siteSettings] = await Promise.all([
+  getHomePage(),
+  getSiteSettings(),
+])
+
+const heroSlides = toHeroSlides(homePage)
+const verticalSections = toVerticalSections(homePage)
 ---
 
-<Layout>
-  <HeroGrid />
+<Layout siteSettings={siteSettings}>
+  <HeroGrid
+    heroSlides={heroSlides}
+    homePage={homePage}
+    verticalSections={verticalSections}
+  />
 </Layout>

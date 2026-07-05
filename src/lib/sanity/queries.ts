@@ -1,0 +1,39 @@
+export const siteSettingsQuery = `*[_type == "siteSettings" && _id == "siteSettings"][0]{
+  siteName,
+  defaultTitle,
+  headerCta
+}`
+
+export const homePageQuery = `*[_type == "homePage" && _id == "homePage"][0]{
+  heroCycleSeconds,
+  continuationTagline,
+  heroSlides[]{
+    id,
+    verticalLabel,
+    headline,
+    subtext,
+    logoImage,
+    logoImageAlt,
+    continuationImage,
+    continuationImageAlt,
+    sections[]{
+      eyebrow,
+      heading,
+      body,
+      backgroundColor
+    }
+  },
+  services[]{
+    title,
+    description,
+    panelColor,
+    panelInnerColor,
+    panelBlockColor
+  },
+  footer{
+    eyebrow,
+    heading,
+    body,
+    backgroundColor
+  }
+}`

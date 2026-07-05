@@ -2,13 +2,15 @@
 interface HeroSlide {
   id: string
   flippedImage: string
+  continuationImageAlt?: string
 }
 
 interface Props {
   slides: HeroSlide[]
+  tagline: string
 }
 
-const { slides } = Astro.props
+const { slides, tagline } = Astro.props
 ---
 
 <section class="relative bg-[#FDE9C1]">
@@ -19,7 +21,7 @@ const { slides } = Astro.props
           data-hero-continuation
           data-slide={index}
           src={slide.flippedImage}
-          alt=""
+          alt={slide.continuationImageAlt ?? ""}
           aria-hidden="true"
           class:list={[
             "col-start-1 row-start-1 block h-auto w-full",
@@ -33,7 +35,7 @@ const { slides } = Astro.props
     <p
       class="font-heading max-w-3xl text-[clamp(1.5rem,3vw,2.5rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]"
     >
-      Software that fits how your team actually works.
+      {tagline}
     </p>
   </div>
 </section>

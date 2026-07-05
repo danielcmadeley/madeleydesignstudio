@@ -1,6 +1,13 @@
 ---
 import "@/styles/global.css"
 import Header from "@/components/universal/header.astro"
+import type { SiteSettingsContent } from "@/lib/sanity/types"
+
+interface Props {
+  siteSettings: SiteSettingsContent
+}
+
+const { siteSettings } = Astro.props
 ---
 
 <html lang="en">
@@ -8,10 +15,10 @@ import Header from "@/components/universal/header.astro"
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>madeleydesignstudio.</title>
+    <title>{siteSettings.defaultTitle}</title>
   </head>
   <body>
-    <Header />
+    <Header siteSettings={siteSettings} />
     <slot />
   </body>
 </html>
