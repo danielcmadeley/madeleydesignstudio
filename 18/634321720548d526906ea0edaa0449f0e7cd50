@@ -1,0 +1,40 @@
+package.json
+  s_33a001b4f4493a::t_dad4aa67d939b5 48
+  s_33a001b4f4493a::t_0669d68ddcd85e 20
+src/pages/get-your-software.astro
+  s_33a001b4f4493a::t_aaba381d747b4b 1-259
+.wrangler/deploy/config.json
+  s_33a001b4f4493a::t_2f0d44565665c3 1
+scripts/seed-sanity.ts
+  s_33a001b4f4493a::t_73727456e5644d 169
+src/pages/api/get-your-software.ts
+  s_33a001b4f4493a::t_603af9880376fd 1-10,12-131
+  h_c71e0cdb2092d3 11
+wrangler.jsonc
+  s_33a001b4f4493a::t_7aaa828cb34fad 3,5,8
+astro.config.mjs
+  s_33a001b4f4493a::t_ee18c101a24d36 4,6,12-21
+bun.lock
+  s_33a001b4f4493a::t_155fa9af40a094 8,36,100-101,104,116-117,348-349,994-995,1626-1627,2312-2313,2470-2471,2598-2599,2950
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "18634321720548d526906ea0edaa0449f0e7cd50",
+  "prompts": {},
+  "humans": {
+    "h_c71e0cdb2092d3": {
+      "author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  },
+  "sessions": {
+    "s_33a001b4f4493a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "95a74b12-8bc4-4567-886e-e406e5e1503e",
+        "model": "claude-fable-5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
