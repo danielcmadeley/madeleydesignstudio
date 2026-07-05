@@ -1,0 +1,14 @@
+wrangler.jsonc
+  h_c71e0cdb2092d3 10-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "7165ecd5312ff5d701b7a21328edb27fdb94d634",
+  "prompts": {},
+  "humans": {
+    "h_c71e0cdb2092d3": {
+      "author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
