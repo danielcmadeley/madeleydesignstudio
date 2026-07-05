@@ -1,0 +1,32 @@
+src/emails/inquiry-email.tsx
+  s_33a001b4f4493a::t_c535ab1fb4784c 1-231
+package.json
+  s_33a001b4f4493a::t_13926d3e819931 26
+src/pages/api/get-your-software.ts
+  s_33a001b4f4493a::t_52c273688b8923 4
+  s_33a001b4f4493a::t_8cac3f1d490386 92-99
+  s_33a001b4f4493a::t_8d75053dad6c18 9
+bun.lock
+  s_33a001b4f4493a::t_1696584d8c6b07 14,765-806,999-1000,1585,1841-1842,1845-1846,2013-2014,2081-2082,2323-2324,2341-2342,2585-2586,3223-3224
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "eeecae3912ad7450b5861ec5f500a66308483b5a",
+  "prompts": {},
+  "humans": {
+    "h_c71e0cdb2092d3": {
+      "author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  },
+  "sessions": {
+    "s_33a001b4f4493a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "95a74b12-8bc4-4567-886e-e406e5e1503e",
+        "model": "claude-fable-5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
