@@ -1,13 +1,12 @@
 import type { APIRoute } from "astro"
 import { RESEND_API_KEY } from "astro:env/server"
 import { Resend } from "resend"
+import InquiryEmail from "@/emails/inquiry-email"
 
 export const prerender = false
 
 const TO_EMAIL = "daniel@madeleydesignstudio.com"
-// Sending from a custom address requires the domain to be verified in Resend
-// (resend.com/domains). Until then, onboarding@resend.dev only delivers to the
-// Resend account owner's email.
+// From-address domain must stay verified in Resend (resend.com/domains).
 const FROM_EMAIL = "madeleydesignstudio <daniel@madeleydesignstudio.com>"
 
 const PRODUCT_TYPES = ["AEC", "Software", "Marketing"] as const
@@ -27,15 +26,6 @@ interface InquiryPayload {
   services?: string[]
   message?: string
   website?: string
-}
-
-function escapeHtml(value: string): string {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;")
 }
 
 function jsonResponse(body: object, status: number): Response {
@@ -94,29 +84,19 @@ export const POST: APIRoute = async ({ request }) => {
 
   const resend = new Resend(RESEND_API_KEY)
 
-  const rows = [
-    ["Name", name],
-    ["Email", email],
-    ["Company", company || "—"],
-    ["Product type", productType],
-    ["Services", services.join(", ")],
-  ]
-    .map(
-      ([label, value]) =>
-        `<tr><td style="padding:4px 16px 4px 0;color:#6b6b6b;">${label}</td><td style="padding:4px 0;">${escapeHtml(value)}</td></tr>`,
-    )
-    .join("")
-
   const { error } = await resend.emails.send({
     from: FROM_EMAIL,
     to: [TO_EMAIL],
     replyTo: email,
     subject: `New enquiry — ${productType} — ${name}`,
-    html: `
-      <h2 style="margin:0 0 12px;">New "get your software" enquiry</h2>
-      <table style="border-collapse:collapse;font-size:14px;">${rows}</table>
-      ${message ? `<h3 style="margin:20px 0 8px;">Project details</h3><p style="white-space:pre-wrap;font-size:14px;">${escapeHtml(message)}</p>` : ""}
-    `,
+    react: InquiryEmail({
+      name,
+      email,
+      company,
+      productType,
+      services,
+      message,
+    }),
   })
 
   if (error) {
