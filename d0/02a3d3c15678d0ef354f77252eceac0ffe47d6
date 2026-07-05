@@ -1,0 +1,99 @@
+src/components/landing-page/services-section.astro
+  s_6f9e2428ee18db::t_0775d44cd83df5 14
+src/components/universal/page-hero.astro
+  s_6f9e2428ee18db::t_89d88694752be1 36,44
+  s_6f9e2428ee18db::t_7d196c26f019c8 1-35,37-43,45-54
+src/components/landing-page/hero-bottom-right.astro
+  s_6f9e2428ee18db::t_0775d44cd83df5 70
+  s_6f9e2428ee18db::t_89d88694752be1 45-64,76-77,82-83,88-89,94-95,100-104,187-188,287-289,292-300
+src/components/landing-page/page-sections.astro
+  s_6f9e2428ee18db::t_89d88694752be1 29,34,37,40,63-65,78-81,87-90,93-96
+  s_707d78eeea548c::t_fd020f536e8c37 46-47
+  s_6f9e2428ee18db::t_0775d44cd83df5 50,103,107
+  s_707d78eeea548c::t_be83761f189f70 2
+src/components/universal/header.astro
+  s_4d058ff5dc3d50::t_cfa4308ef98e90 11-14
+  s_6f9e2428ee18db::t_89d88694752be1 49,63
+  s_4d058ff5dc3d50::t_c749ab1acd7866 29-30
+  s_6f9e2428ee18db::t_0775d44cd83df5 23
+  s_4d058ff5dc3d50::t_b640cb64901ca6 38
+  h_c71e0cdb2092d3 27
+src/pages/studio.astro
+  s_6f9e2428ee18db::t_cf6b2de5ae7d40 3,10-14
+src/components/landing-page/hero-aec-panel.astro
+  s_6f9e2428ee18db::t_e6e5fe180deb5d 2,5
+  s_6f9e2428ee18db::t_89d88694752be1 17
+  s_6f9e2428ee18db::t_0775d44cd83df5 26
+src/components/landing-page/service-card.astro
+  s_6f9e2428ee18db::t_0775d44cd83df5 33,135
+  s_6f9e2428ee18db::t_89d88694752be1 66,143
+src/components/landing-page/hero-bottom-left.astro
+  s_6f9e2428ee18db::t_89d88694752be1 3
+src/components/landing-page/hero-grid.astro
+  s_6f9e2428ee18db::t_e9b6a07f8912f3 113,121
+  s_6f9e2428ee18db::t_89d88694752be1 39,75,106-108,114-120,139-144,146,150-155,157,181-183,193-204,218-223,225-226,228-230,254-255,278-287,308-312,314-336,343-344,386-388
+  s_6f9e2428ee18db::t_5170bfddbe505f 130
+  s_6f9e2428ee18db::t_0775d44cd83df5 25,30
+src/components/landing-page/blocks-section.astro
+  s_707d78eeea548c::t_f26d9518c9a56a 1-11,17-40,45-59,61-67,69-77,79-88
+  s_707d78eeea548c::t_4b4804f3ddaaf8 78
+  s_6f9e2428ee18db::t_89d88694752be1 12-16,42-44
+  s_6f9e2428ee18db::t_0775d44cd83df5 41,68
+  s_707d78eeea548c::t_a54c292846e79a 60
+src/pages/company.astro
+  s_6f9e2428ee18db::t_f813e51ff26a3c 3,10-14
+src/pages/forge.astro
+  s_6f9e2428ee18db::t_2e09d837dea45f 3,10-15
+src/components/landing-page/hero-continuation.astro
+  s_6f9e2428ee18db::t_f16a5ac583590c 2,5
+  s_6f9e2428ee18db::t_0775d44cd83df5 12
+  s_6f9e2428ee18db::t_89d88694752be1 32
+src/components/landing-page/hero-top-left.astro
+  s_6f9e2428ee18db::t_89d88694752be1 13,28,40
+  s_6f9e2428ee18db::t_84654de4ea13fd 2,5
+src/styles/global.css
+  s_4d058ff5dc3d50::t_cd201856fa8fe1 39
+  s_4d058ff5dc3d50::t_80e87e41f1a47d 35-36
+  s_6f9e2428ee18db::t_626c1d8df8c59e 81-83,86-87,133
+  s_4d058ff5dc3d50::t_044cda59ac9e63 11,13,15-16
+  s_4d058ff5dc3d50::t_0ee69b55dae345 19
+  s_4d058ff5dc3d50::t_74c1230922fd3a 23
+  s_4d058ff5dc3d50::t_dd9b299732dc4c 84-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "d002a3d3c15678d0ef354f77252eceac0ffe47d6",
+  "prompts": {},
+  "humans": {
+    "h_c71e0cdb2092d3": {
+      "author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  },
+  "sessions": {
+    "s_4d058ff5dc3d50": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "d6811b0b-749b-4444-af44-641ddcfc3a70",
+        "model": "composer-2.5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    },
+    "s_6f9e2428ee18db": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "61a2a409-e4a1-4897-8a35-e0f424ea9acf",
+        "model": "claude-fable-5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    },
+    "s_707d78eeea548c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2a69ee20-0e10-4955-aafb-b13634b5f845",
+        "model": "claude-fable-5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
