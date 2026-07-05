@@ -1,0 +1,259 @@
+---
+import Layout from "@/layouts/main.astro"
+import { getSiteSettings } from "@/lib/sanity/content"
+
+const siteSettings = await getSiteSettings()
+
+const productTypes = ["AEC", "Software", "Marketing"] as const
+const services = [
+  "Marketing Sites",
+  "Software Development",
+  "UI/UX Design",
+  "AEC Software",
+  "AI Tools",
+] as const
+
+const calUrl = "https://cal.com/madeleydesignstudio"
+
+const inputClasses =
+  "w-full border border-charcoal/25 bg-white/60 px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-brand-red focus:outline-none"
+const labelClasses =
+  "mb-2 block text-xs font-medium tracking-[0.15em] text-ink/70 uppercase"
+---
+
+<Layout siteSettings={siteSettings}>
+  <section
+    class="mt-header min-h-[calc(100svh-var(--spacing-header))] bg-cream px-8 py-16 md:px-12 md:py-20"
+  >
+    <div class="grid gap-16 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+      <div class="flex flex-col justify-between gap-12">
+        <div>
+          <p
+            class="mb-3 text-sm font-medium tracking-[0.2em] text-brand-red uppercase"
+          >
+            get your software
+          </p>
+          <h1
+            class="max-w-xl font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-tight font-bold tracking-tight text-ink"
+          >
+            Tell us what you need built.
+          </h1>
+          <p class="mt-4 max-w-md text-lg text-ink/70">
+            Share a few details about your project and we&rsquo;ll get back to
+            you within one working day.
+          </p>
+        </div>
+
+        <div class="border border-charcoal/25 p-6">
+          <p class="text-sm font-medium tracking-[0.15em] text-ink/70 uppercase">
+            prefer to talk?
+          </p>
+          <p class="mt-2 max-w-sm text-sm text-ink/70">
+            Skip the form and book a call directly with us instead.
+          </p>
+          <a
+            href={calUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            class="mt-4 inline-flex items-center gap-3 bg-charcoal px-6 py-3 text-sm text-white lowercase no-underline"
+          >
+            book a meeting
+            <svg
+              width="20"
+              height="10"
+              viewBox="0 0 20 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M0 5H19M19 5L14.5 0.5M19 5L14.5 9.5"
+                stroke="currentColor"
+                stroke-width="1.2"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <form id="inquiry-form" class="flex flex-col gap-8" novalidate>
+        <div class="grid gap-8 sm:grid-cols-2">
+          <div>
+            <label for="name" class={labelClasses}>name *</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Jane Smith"
+              class={inputClasses}
+            />
+          </div>
+          <div>
+            <label for="email" class={labelClasses}>email *</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="jane@company.com"
+              class={inputClasses}
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="company" class={labelClasses}>company</label>
+          <input
+            id="company"
+            name="company"
+            type="text"
+            autocomplete="organization"
+            placeholder="Company Ltd"
+            class={inputClasses}
+          />
+        </div>
+
+        <fieldset>
+          <legend class={labelClasses}>product type *</legend>
+          <div class="grid gap-px border border-charcoal/25 bg-charcoal/25 sm:grid-cols-3">
+            {
+              productTypes.map((type) => (
+                <label class="flex cursor-pointer items-center gap-3 bg-cream px-4 py-3 text-sm text-ink has-checked:bg-brand-red has-checked:text-white">
+                  <input
+                    type="radio"
+                    name="productType"
+                    value={type}
+                    required
+                    class="accent-brand-red"
+                  />
+                  {type}
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend class={labelClasses}>services required *</legend>
+          <div class="grid gap-px border border-charcoal/25 bg-charcoal/25 sm:grid-cols-2">
+            {
+              services.map((service) => (
+                <label class="flex cursor-pointer items-center gap-3 bg-cream px-4 py-3 text-sm text-ink has-checked:bg-brand-red has-checked:text-white">
+                  <input
+                    type="checkbox"
+                    name="services"
+                    value={service}
+                    class="accent-brand-red"
+                  />
+                  {service}
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+
+        <div>
+          <label for="message" class={labelClasses}>project details</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="What are you trying to build, and what problem does it solve?"
+            class={inputClasses}></textarea>
+        </div>
+
+        <input
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          class="hidden"
+        />
+
+        <div class="flex flex-wrap items-center gap-4">
+          <button
+            type="submit"
+            class="inline-flex items-center gap-3 bg-brand-red px-8 py-3 text-sm text-white lowercase disabled:opacity-60"
+          >
+            send enquiry
+            <svg
+              width="20"
+              height="10"
+              viewBox="0 0 20 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M0 5H19M19 5L14.5 0.5M19 5L14.5 9.5"
+                stroke="currentColor"
+                stroke-width="1.2"></path>
+            </svg>
+          </button>
+          <p id="inquiry-status" class="text-sm" role="status"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById("inquiry-form") as HTMLFormElement
+  const status = document.getElementById("inquiry-status") as HTMLElement
+  const submitButton = form.querySelector("button") as HTMLButtonElement
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault()
+
+    if (!form.reportValidity()) return
+
+    const formData = new FormData(form)
+    if (formData.getAll("services").length === 0) {
+      status.textContent = "please select at least one service."
+      status.className = "text-sm text-brand-red"
+      return
+    }
+
+    submitButton.disabled = true
+    status.textContent = "sending…"
+    status.className = "text-sm text-ink/60"
+
+    try {
+      const response = await fetch("/api/get-your-software", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          company: formData.get("company"),
+          productType: formData.get("productType"),
+          services: formData.getAll("services"),
+          message: formData.get("message"),
+          website: formData.get("website"),
+        }),
+      })
+
+      if (!response.ok) {
+        const data = (await response.json().catch(() => null)) as {
+          error?: string
+        } | null
+        throw new Error(data?.error ?? "Something went wrong.")
+      }
+
+      form.reset()
+      status.textContent = "thanks — we'll be in touch within one working day."
+      status.className = "text-sm text-ink"
+    } catch (error) {
+      status.textContent =
+        error instanceof Error
+          ? error.message.toLowerCase()
+          : "something went wrong. please try again."
+      status.className = "text-sm text-brand-red"
+    } finally {
+      submitButton.disabled = false
+    }
+  })
+</script>

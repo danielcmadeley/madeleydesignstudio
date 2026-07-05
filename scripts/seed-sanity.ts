@@ -166,7 +166,7 @@ async function main() {
     headerCta: {
       _type: "ctaLink",
       label: "get your software →",
-      url: "#",
+      url: "/get-your-software",
       openInNewTab: false,
     },
   })
