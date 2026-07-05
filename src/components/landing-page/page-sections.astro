@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets"
+import footerCastle from "@/assets/footer-castle.png"
 import BlocksSection from "@/components/landing-page/blocks-section.astro"
 import ServicesSection from "@/components/landing-page/services-section.astro"
 import type {
@@ -53,10 +55,13 @@ const { verticalSections, services, footer, siteSettings } = Astro.props
       style={{ backgroundColor: footer.backgroundColor }}
       class="relative flex min-h-svh flex-col justify-between overflow-hidden rounded-[2rem] px-8 py-16 md:px-12 md:py-20"
     >
-      <img
-        src="/footer-castle.png"
+      <Image
+        src={footerCastle}
+        widths={[480, 720, 900, 1440]}
+        sizes="(min-width: 1286px) 900px, 70vw"
         alt=""
         aria-hidden="true"
+        loading="lazy"
         class="pointer-events-none absolute right-0 bottom-0 w-[70%] max-w-[900px] object-contain object-bottom mix-blend-multiply"
       />
 

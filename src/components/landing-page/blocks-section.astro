@@ -56,8 +56,9 @@ const anchorDots: [number, number][] = [
     {
       blocks.map((block) => (
         <div
+          data-block
           class:list={[
-            "relative z-10 flex items-end border p-3 md:p-5",
+            "relative z-10 flex items-end overflow-hidden border p-3 md:p-5",
             block.placement,
           ]}
           style={{
@@ -65,7 +66,16 @@ const anchorDots: [number, number][] = [
             borderColor: BORDER_COLOR,
           }}
         >
-          <span class="font-heading text-[clamp(0.75rem,1.25vw,1.125rem)] font-bold tracking-tight text-charcoal">
+          <div
+            data-block-bar
+            class="pointer-events-none absolute inset-y-0 left-0 w-[18%] origin-left scale-x-0"
+            style={{ backgroundColor: BORDER_COLOR }}
+          >
+          </div>
+          <span
+            data-block-label
+            class="relative font-heading text-[clamp(0.75rem,1.25vw,1.125rem)] font-bold tracking-tight text-charcoal"
+          >
             {block.label}
           </span>
         </div>
@@ -86,3 +96,43 @@ const anchorDots: [number, number][] = [
     }
   </div>
 </section>
+
+<script>
+  import gsap from "gsap"
+
+  let ctx: gsap.Context | undefined
+
+  function initBlockHover() {
+    ctx?.revert()
+
+    const section = document.querySelector<HTMLElement>(
+      "[data-blocks-section]"
+    )
+    if (!section) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+
+    ctx = gsap.context(() => {
+      section
+        .querySelectorAll<HTMLElement>("[data-block]")
+        .forEach((block) => {
+          const bar = block.querySelector<HTMLElement>("[data-block-bar]")
+          const label = block.querySelector<HTMLElement>("[data-block-label]")
+          if (!bar || !label) return
+
+          const timeline = gsap
+            .timeline({
+              paused: true,
+              defaults: { duration: 0.45, ease: "power3.out" },
+            })
+            .to(bar, { scaleX: 1 }, 0)
+            .to(label, { x: () => bar.offsetWidth }, 0)
+
+          block.addEventListener("mouseenter", () => timeline.play())
+          block.addEventListener("mouseleave", () => timeline.reverse())
+        })
+    }, section)
+  }
+
+  document.addEventListener("astro:page-load", initBlockHover)
+  initBlockHover()
+</script>

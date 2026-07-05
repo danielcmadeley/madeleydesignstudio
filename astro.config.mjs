@@ -6,10 +6,15 @@ import react from "@astrojs/react"
 import cloudflare from "@astrojs/cloudflare"
 
 import sanity from "@sanity/astro";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  adapter: cloudflare(),
+  site: "https://madeleydesignstudio.com",
+  adapter: cloudflare({ imageService: "compile" }),
+  prefetch: {
+    prefetchAll: true,
+  },
   env: {
     schema: {
       RESEND_API_KEY: envField.string({
@@ -24,6 +29,9 @@ export default defineConfig({
   },
   integrations: [
     react(),
+    sitemap({
+      filter: (page) => !page.includes("/admin"),
+    }),
     sanity({
       projectId: "a0grmhhc",
       dataset: "production",

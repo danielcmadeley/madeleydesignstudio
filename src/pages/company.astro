@@ -6,7 +6,11 @@ import { getSiteSettings } from "@/lib/sanity/content"
 const siteSettings = await getSiteSettings()
 ---
 
-<Layout siteSettings={siteSettings}>
+<Layout
+  siteSettings={siteSettings}
+  title="Company"
+  description="Who we are at Madeley Design Studio — a design and software studio building for the AEC industry and beyond."
+>
   <PageHero
     eyebrow="company"
     heading="Who we are."

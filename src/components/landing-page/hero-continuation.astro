@@ -2,7 +2,15 @@
 import type { HeroSlideView } from "@/lib/sanity/types"
 
 interface Props {
-  slides: Pick<HeroSlideView, "id" | "flippedImage" | "continuationImageAlt">[]
+  slides: Pick<
+    HeroSlideView,
+    | "id"
+    | "flippedImage"
+    | "flippedImageSrcSet"
+    | "flippedImageWidth"
+    | "flippedImageHeight"
+    | "continuationImageAlt"
+  >[]
   tagline: string
 }
 
@@ -17,7 +25,13 @@ const { slides, tagline } = Astro.props
           data-hero-continuation
           data-slide={index}
           src={slide.flippedImage}
+          srcset={slide.flippedImageSrcSet}
+          sizes="100vw"
+          width={slide.flippedImageWidth}
+          height={slide.flippedImageHeight}
           alt={slide.continuationImageAlt ?? ""}
+          loading="lazy"
+          decoding="async"
           aria-hidden="true"
           class:list={[
             "col-start-1 row-start-1 block h-auto w-full",

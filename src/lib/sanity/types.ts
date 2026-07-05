@@ -44,6 +44,8 @@ export type HomePageContent = {
 export type SiteSettingsContent = {
   siteName: string
   defaultTitle: string
+  defaultDescription?: string
+  ogImage?: SanityImageSource
   headerCta: CtaLink
 }
 
@@ -53,6 +55,9 @@ export type HeroSlideView = {
   subtext: string
   image: string
   flippedImage: string
+  flippedImageSrcSet: string
+  flippedImageWidth?: number
+  flippedImageHeight?: number
   logoImageAlt: string
   continuationImageAlt: string
 }

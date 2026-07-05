@@ -39,6 +39,9 @@ const { slides } = Astro.props
           data-slide={index}
           src={slide.image}
           alt={slide.logoImageAlt ?? ""}
+          loading={index === 0 ? "eager" : "lazy"}
+          fetchpriority={index === 0 ? "high" : "auto"}
+          decoding="async"
           class:list={[
             "absolute right-0 bottom-0 h-[60px] w-[200px] object-contain object-bottom-right will-change-[width,height]",
             index === 0 ? "opacity-100" : "opacity-0",

@@ -1,5 +1,5 @@
 import { sanityClient } from "sanity:client"
-import { imageUrl } from "@/lib/sanity/image"
+import { imageDimensions, imageSrcSet, imageUrl } from "@/lib/sanity/image"
 import { homePageQuery, siteSettingsQuery } from "@/lib/sanity/queries"
 import type {
   HeroSlideView,
@@ -34,17 +34,33 @@ export async function getHomePage(): Promise<HomePageContent> {
   return page
 }
 
+// Logos render in a ~200px box (400px covers retina); continuation images
+// span the full viewport width, so ship a srcset instead of the original.
+const LOGO_WIDTH = 400
+const CONTINUATION_WIDTHS = [640, 960, 1280, 1920]
+
 export function toHeroSlides(page: HomePageContent): HeroSlideView[] {
-  return page.heroSlides.map((slide) => ({
-    id: slide.id.current,
-    headline: slide.headline,
-    subtext: slide.subtext,
-    image: imageUrl(slide.logoImage),
-    flippedImage: imageUrl(slide.continuationImage),
-    logoImageAlt: slide.logoImageAlt ?? `${slide.verticalLabel} logo`,
-    continuationImageAlt:
-      slide.continuationImageAlt ?? `${slide.verticalLabel} continuation graphic`,
-  }))
+  return page.heroSlides.map((slide) => {
+    const flippedDimensions = imageDimensions(slide.continuationImage)
+
+    return {
+      id: slide.id.current,
+      headline: slide.headline,
+      subtext: slide.subtext,
+      image: imageUrl(slide.logoImage, LOGO_WIDTH),
+      flippedImage: imageUrl(slide.continuationImage, 1280),
+      flippedImageSrcSet: imageSrcSet(
+        slide.continuationImage,
+        CONTINUATION_WIDTHS,
+      ),
+      flippedImageWidth: flippedDimensions?.width,
+      flippedImageHeight: flippedDimensions?.height,
+      logoImageAlt: slide.logoImageAlt ?? `${slide.verticalLabel} logo`,
+      continuationImageAlt:
+        slide.continuationImageAlt ??
+        `${slide.verticalLabel} continuation graphic`,
+    }
+  })
 }
 
 export function toVerticalSections(

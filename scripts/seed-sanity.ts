@@ -119,12 +119,12 @@ async function main() {
   for (const vertical of verticals) {
     const logoImage = await uploadImage(
       client,
-      join("public", vertical.logoFile),
+      join("scripts", "assets", vertical.logoFile),
       vertical.logoFile,
     )
     const continuationImage = await uploadImage(
       client,
-      join("public", vertical.continuationFile),
+      join("scripts", "assets", vertical.continuationFile),
       vertical.continuationFile,
     )
 
@@ -163,6 +163,8 @@ async function main() {
     _type: "siteSettings",
     siteName: "madeleydesignstudio.",
     defaultTitle: "madeleydesignstudio.",
+    defaultDescription:
+      "Madeley Design Studio builds tailored software, marketing sites, and AI tools for the AEC industry and beyond. Proud designers of the future.",
     headerCta: {
       _type: "ctaLink",
       label: "get your software →",

@@ -1,6 +1,8 @@
 export const siteSettingsQuery = `*[_type == "siteSettings" && _id == "siteSettings"][0]{
   siteName,
   defaultTitle,
+  defaultDescription,
+  ogImage,
   headerCta
 }`
 

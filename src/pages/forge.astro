@@ -6,7 +6,11 @@ import { getSiteSettings } from "@/lib/sanity/content"
 const siteSettings = await getSiteSettings()
 ---
 
-<Layout siteSettings={siteSettings}>
+<Layout
+  siteSettings={siteSettings}
+  title="Forge"
+  description="Forge is Madeley Design Studio's software practice — tailored systems and AI tools, built to last."
+>
   <PageHero
     variant="dark"
     eyebrow="forge"
