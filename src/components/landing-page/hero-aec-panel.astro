@@ -1,13 +1,8 @@
 ---
-interface HeroSlide {
-  id: string
-  subtext: string
-  image: string
-  logoImageAlt?: string
-}
+import type { HeroSlideView } from "@/lib/sanity/types"
 
 interface Props {
-  slides: HeroSlide[]
+  slides: Pick<HeroSlideView, "id" | "subtext" | "image" | "logoImageAlt">[]
 }
 
 const { slides } = Astro.props
@@ -19,7 +14,7 @@ const { slides } = Astro.props
 >
   <section
     data-hero-aec
-    class="absolute inset-0 bg-[#FDE9C1] px-6 py-10 md:px-8 md:py-14 border-l border-[#BA0000] will-change-[top,left,width,height]"
+    class="absolute inset-0 border-l border-brand-red bg-sand px-6 py-10 will-change-[top,left,width,height] md:px-8 md:py-14"
   >
     <div class="grid max-w-[80%]">
       {
@@ -28,7 +23,7 @@ const { slides } = Astro.props
             data-hero-subtext
             data-slide={index}
             class:list={[
-              "col-start-1 row-start-1 text-3xl leading-snug font-medium text-[#1a1a1a]",
+              "col-start-1 row-start-1 text-3xl leading-snug font-medium text-ink-deep",
               index === 0 ? "opacity-100" : "opacity-0",
             ]}
           >

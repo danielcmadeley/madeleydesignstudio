@@ -1,4 +1,5 @@
 ---
+import BlocksSection from "@/components/landing-page/blocks-section.astro"
 import ServicesSection from "@/components/landing-page/services-section.astro"
 import type {
   PageSection,
@@ -25,30 +26,28 @@ const { verticalSections, services, footer, siteSettings } = Astro.props
         data-slide={section.slideIndex}
         style={{ backgroundColor: section.backgroundColor }}
         class:list={[
-          "min-h-svh flex items-end border-t border-[#BA0000] px-8 py-16 md:px-12 md:py-20",
+          "flex min-h-svh items-end border-t border-brand-red px-8 py-16 md:px-12 md:py-20",
           section.slideIndex !== 0 && "hidden",
         ]}
       >
         <div>
-          <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-[#BA0000]">
+          <p class="mb-3 text-sm font-medium tracking-[0.2em] text-brand-red uppercase">
             {section.eyebrow}
           </p>
-          <h2
-            class="font-heading max-w-3xl text-[clamp(1.75rem,3vw,2.75rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]"
-          >
+          <h2 class="max-w-3xl font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-tight font-bold tracking-tight text-ink">
             {section.heading}
           </h2>
-          <p class="mt-4 max-w-xl text-lg text-[#2a2a2a]/70">
-            {section.body}
-          </p>
+          <p class="mt-4 max-w-xl text-lg text-ink/70">{section.body}</p>
         </div>
       </section>
     ))
   }
 
+  <BlocksSection />
+
   <ServicesSection services={services} />
 
-  <div class="bg-[#F8EACD] p-3 md:p-4">
+  <div class="bg-cream p-3 md:p-4">
     <footer
       data-page-footer
       style={{ backgroundColor: footer.backgroundColor }}
@@ -61,7 +60,9 @@ const { verticalSections, services, footer, siteSettings } = Astro.props
         class="pointer-events-none absolute right-0 bottom-0 w-[70%] max-w-[900px] object-contain object-bottom mix-blend-multiply"
       />
 
-      <div class="relative z-10 grid w-full max-w-3xl grid-cols-1 gap-12 self-end sm:grid-cols-2 sm:gap-20">
+      <div
+        class="relative z-10 grid w-full max-w-3xl grid-cols-1 gap-12 self-end sm:grid-cols-2 sm:gap-20"
+      >
         <div class="flex flex-col gap-10">
           <div class="border-t border-white/40 pt-4">
             <p class="text-sm font-semibold text-white">Lets work together</p>
@@ -74,27 +75,36 @@ const { verticalSections, services, footer, siteSettings } = Astro.props
           </div>
           <div class="border-t border-white/40 pt-4">
             <p class="text-sm font-semibold text-white">Join the team!</p>
-            <a href="/careers" class="mt-2 block text-sm text-white/90 no-underline">
+            <a
+              href="/careers"
+              class="mt-2 block text-sm text-white/90 no-underline"
+            >
               Apply Here
             </a>
           </div>
         </div>
         <div class="flex flex-col gap-2 border-t border-white/40 pt-4">
-          <a href="/studio" class="text-sm font-semibold text-white no-underline">
+          <a
+            href="/studio"
+            class="text-sm font-semibold text-white no-underline"
+          >
             Studio
           </a>
-          <a href="/forge" class="text-sm font-semibold text-white no-underline">
+          <a
+            href="/forge"
+            class="text-sm font-semibold text-white no-underline"
+          >
             Forge
           </a>
         </div>
       </div>
 
       <div class="relative z-10">
-        <p class="font-heading text-2xl text-[#F8EACD] md:text-3xl">
+        <p class="font-heading text-2xl text-cream md:text-3xl">
           Proud designers of the future.
         </p>
         <p
-          class="font-heading text-[clamp(2.5rem,9vw,7rem)] leading-none font-bold tracking-tight text-[#F8EACD] lowercase"
+          class="font-heading text-[clamp(2.5rem,9vw,7rem)] leading-none font-bold tracking-tight text-cream lowercase"
         >
           {siteSettings.siteName}.
         </p>

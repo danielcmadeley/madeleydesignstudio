@@ -42,42 +42,66 @@ const pixels = [
 ]
 
 const corners = [
-  { position: "top-5 md:top-6", edge: "left", translate: "-translate-x-1/2 -translate-y-1/2" },
-  { position: "top-5 md:top-6", edge: "right", translate: "translate-x-1/2 -translate-y-1/2" },
-  { position: "bottom-5 md:bottom-6", edge: "left", translate: "-translate-x-1/2 translate-y-1/2" },
-  { position: "bottom-5 md:bottom-6", edge: "right", translate: "translate-x-1/2 translate-y-1/2" },
+  {
+    position: "top-5 md:top-6",
+    edge: "left",
+    translate: "-translate-x-1/2 -translate-y-1/2",
+  },
+  {
+    position: "top-5 md:top-6",
+    edge: "right",
+    translate: "translate-x-1/2 -translate-y-1/2",
+  },
+  {
+    position: "bottom-5 md:bottom-6",
+    edge: "left",
+    translate: "-translate-x-1/2 translate-y-1/2",
+  },
+  {
+    position: "bottom-5 md:bottom-6",
+    edge: "right",
+    translate: "translate-x-1/2 translate-y-1/2",
+  },
 ]
 ---
 
 <section
   data-hero-bottom-right
-  class="relative col-span-2 row-start-2 min-h-0 overflow-hidden bg-[#BA0000] will-change-transform"
+  class="relative col-span-2 row-start-2 min-h-0 overflow-hidden bg-brand-red will-change-transform"
 >
   <div
     class="pointer-events-none absolute top-5 right-0 left-0 h-px md:top-6"
     style={`background-color: ${frameColor}`}
     aria-hidden="true"
-  ></div>
+  >
+  </div>
   <div
     class="pointer-events-none absolute right-0 bottom-5 left-0 h-px md:bottom-6"
     style={`background-color: ${frameColor}`}
     aria-hidden="true"
-  ></div>
+  >
+  </div>
   <div
     class="pointer-events-none absolute top-0 bottom-0 w-px"
     style={`left: ${frameInsetX}; background-color: ${frameColor}`}
     aria-hidden="true"
-  ></div>
+  >
+  </div>
   <div
     class="pointer-events-none absolute top-0 bottom-0 w-px"
     style={`right: ${frameInsetX}; background-color: ${frameColor}`}
     aria-hidden="true"
-  ></div>
+  >
+  </div>
 
   {
     corners.map(({ position, edge, translate }) => (
       <div
-        class:list={["pointer-events-none absolute h-[5px] w-[5px]", position, translate]}
+        class:list={[
+          "pointer-events-none absolute h-[5px] w-[5px]",
+          position,
+          translate,
+        ]}
         style={`${edge}: ${frameInsetX}; background-color: ${frameColor}`}
         aria-hidden="true"
       />
@@ -160,7 +184,8 @@ const corners = [
     }
 
     if (speed < minSpeed) {
-      const angle = speed > 0 ? Math.atan2(body.vy, body.vx) : Math.random() * Math.PI * 2
+      const angle =
+        speed > 0 ? Math.atan2(body.vy, body.vx) : Math.random() * Math.PI * 2
       body.vx = Math.cos(angle) * minSpeed
       body.vy = Math.sin(angle) * minSpeed
     }
@@ -259,13 +284,20 @@ const corners = [
     const arena = document.querySelector<HTMLElement>("[data-hero-pixel-arena]")
     if (!arena) return
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
     const cols = Number(arena.dataset.cols)
     const rows = Number(arena.dataset.rows)
-    const pixelData: PixelData[] = arena.dataset.pixels ? JSON.parse(arena.dataset.pixels) : []
-    const elements = Array.from(arena.querySelectorAll<HTMLDivElement>("[data-hero-pixel]"))
+    const pixelData: PixelData[] = arena.dataset.pixels
+      ? JSON.parse(arena.dataset.pixels)
+      : []
+    const elements = Array.from(
+      arena.querySelectorAll<HTMLDivElement>("[data-hero-pixel]")
+    )
 
-    if (!cols || !rows || pixelData.length === 0 || elements.length === 0) return
+    if (!cols || !rows || pixelData.length === 0 || elements.length === 0)
+      return
 
     const bodies: PixelBody[] = []
 

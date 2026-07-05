@@ -30,7 +30,7 @@ const lineDots: [number, number][] = [
 
 <article
   class:list={[
-    "w-5/6 border-y border-[#353535]",
+    "w-5/6 border-y border-charcoal",
     anchoredRight ? "ml-auto border-l" : "mr-auto border-r",
   ]}
   style={{ backgroundColor: CARD_SURROUND_COLOR }}
@@ -63,11 +63,7 @@ const lineDots: [number, number][] = [
         fill="none"
         aria-hidden="true"
       >
-        <g
-          stroke={CIRCUIT_LINE_COLOR}
-          stroke-opacity="0.3"
-          stroke-width="1"
-        >
+        <g stroke={CIRCUIT_LINE_COLOR} stroke-opacity="0.3" stroke-width="1">
           {
             gridColumns.map((x) => (
               <path d={`M ${x} 0 V 100`} vector-effect="non-scaling-stroke" />
@@ -136,7 +132,7 @@ const lineDots: [number, number][] = [
   </div>
   <div
     class:list={[
-      "border-t border-[#353535] px-4 py-2.5 text-xs text-[#353535] md:px-6 md:text-sm",
+      "border-t border-charcoal px-4 py-2.5 text-xs text-charcoal md:px-6 md:text-sm",
       anchoredRight ? "text-left" : "text-right",
     ]}
   >
@@ -144,7 +140,7 @@ const lineDots: [number, number][] = [
   </div>
   <h3
     class:list={[
-      "font-heading border-t border-[#353535] px-4 py-3 text-lg font-bold tracking-tight text-[#353535] md:px-6 md:py-4 md:text-2xl",
+      "border-t border-charcoal px-4 py-3 font-heading text-lg font-bold tracking-tight text-charcoal md:px-6 md:py-4 md:text-2xl",
       anchoredRight ? "text-left" : "text-right",
     ]}
   >

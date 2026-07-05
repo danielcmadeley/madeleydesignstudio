@@ -1,19 +1,15 @@
 ---
-interface HeroSlide {
-  id: string
-  flippedImage: string
-  continuationImageAlt?: string
-}
+import type { HeroSlideView } from "@/lib/sanity/types"
 
 interface Props {
-  slides: HeroSlide[]
+  slides: Pick<HeroSlideView, "id" | "flippedImage" | "continuationImageAlt">[]
   tagline: string
 }
 
 const { slides, tagline } = Astro.props
 ---
 
-<section class="relative bg-[#FDE9C1]">
+<section class="relative bg-sand">
   <div class="grid">
     {
       slides.map((slide, index) => (
@@ -33,7 +29,7 @@ const { slides, tagline } = Astro.props
   </div>
   <div class="min-h-svh px-8 py-24 md:px-12">
     <p
-      class="font-heading max-w-3xl text-[clamp(1.5rem,3vw,2.5rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]"
+      class="max-w-3xl font-heading text-[clamp(1.5rem,3vw,2.5rem)] leading-tight font-bold tracking-tight text-ink"
     >
       {tagline}
     </p>

@@ -1,0 +1,88 @@
+---
+const BORDER_COLOR = "#E0201B"
+const ACCENT_COLOR = "#F7DB9A"
+
+type Block = {
+  label: string
+  color: string
+  placement: string
+}
+
+const blocks: Block[] = [
+  {
+    label: "Structures",
+    color: "#AF4B48",
+    placement: "col-start-2 row-start-1",
+  },
+  { label: "Sites", color: "#E97C76", placement: "col-start-3 row-start-2" },
+  { label: "Software", color: "#E97C76", placement: "col-start-1 row-start-3" },
+  {
+    label: "Forge",
+    color: "#EDB4B0",
+    placement: "col-start-2 row-start-2 row-span-2",
+  },
+  {
+    label: "Studio",
+    color: "#C79390",
+    placement: "col-start-3 col-span-2 row-start-3",
+  },
+]
+
+// Red anchor squares at the T-junctions where block corners meet
+const anchorDots: [number, number][] = [
+  [25, 33.333],
+  [50, 33.333],
+  [25, 66.667],
+  [50, 66.667],
+  [75, 66.667],
+]
+---
+
+<section data-blocks-section class="bg-sand pt-16 md:pt-24">
+  <div
+    class="relative mx-auto grid aspect-[2000/1546] w-[52%] grid-cols-4 grid-rows-3"
+  >
+    <div
+      class="absolute bottom-[33.333%] left-[3.5%] aspect-square w-[8.5%]"
+      style={{ backgroundColor: ACCENT_COLOR }}
+    >
+    </div>
+    <div
+      class="absolute bottom-[34.5%] left-[74.5%] aspect-square w-[8.5%] rotate-[15deg]"
+      style={{ backgroundColor: ACCENT_COLOR }}
+    >
+    </div>
+
+    {
+      blocks.map((block) => (
+        <div
+          class:list={[
+            "relative z-10 flex items-end border p-3 md:p-5",
+            block.placement,
+          ]}
+          style={{
+            backgroundColor: block.color,
+            borderColor: BORDER_COLOR,
+          }}
+        >
+          <span class="font-heading text-[clamp(0.75rem,1.25vw,1.125rem)] font-bold tracking-tight text-charcoal">
+            {block.label}
+          </span>
+        </div>
+      ))
+    }
+
+    {
+      anchorDots.map(([x, y]) => (
+        <div
+          class="absolute z-20 h-1 w-1 -translate-x-1/2 -translate-y-1/2 md:h-1.5 md:w-1.5"
+          style={{
+            left: `${x}%`,
+            top: `${y}%`,
+            backgroundColor: BORDER_COLOR,
+          }}
+        />
+      ))
+    }
+  </div>
+</section>

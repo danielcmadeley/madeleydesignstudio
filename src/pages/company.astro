@@ -1,26 +1,15 @@
 ---
 import Layout from "@/layouts/main.astro"
+import PageHero from "@/components/universal/page-hero.astro"
 import { getSiteSettings } from "@/lib/sanity/content"
 
 const siteSettings = await getSiteSettings()
 ---
 
 <Layout siteSettings={siteSettings}>
-  <section
-    class="mt-[50px] flex min-h-[calc(100svh-50px)] items-end bg-[#F8EACD] px-8 py-16 md:px-12 md:py-20"
-  >
-    <div>
-      <p class="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-[#BA0000]">
-        company
-      </p>
-      <h1
-        class="font-heading max-w-3xl text-[clamp(1.75rem,3vw,2.75rem)] leading-tight font-bold tracking-tight text-[#2a2a2a]"
-      >
-        Who we are.
-      </h1>
-      <p class="mt-4 max-w-xl text-lg text-[#2a2a2a]/70">
-        More on our company is coming soon.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    eyebrow="company"
+    heading="Who we are."
+    body="More on our company is coming soon."
+  />
 </Layout>

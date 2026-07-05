@@ -1,0 +1,54 @@
+---
+interface Props {
+  eyebrow: string
+  heading: string
+  body: string
+  variant?: "light" | "dark"
+}
+
+const { eyebrow, heading, body, variant = "light" } = Astro.props
+
+const theme = {
+  light: {
+    section: "bg-cream",
+    eyebrow: "text-brand-red",
+    heading: "text-ink",
+    body: "text-ink/70",
+  },
+  dark: {
+    section: "bg-charcoal",
+    eyebrow: "text-cream",
+    heading: "text-white",
+    body: "text-white/80",
+  },
+}[variant]
+---
+
+<section
+  class:list={[
+    "mt-header flex min-h-[calc(100svh-var(--spacing-header))] items-end px-8 py-16 md:px-12 md:py-20",
+    theme.section,
+  ]}
+>
+  <div>
+    <p
+      class:list={[
+        "mb-3 text-sm font-medium tracking-[0.2em] uppercase",
+        theme.eyebrow,
+      ]}
+    >
+      {eyebrow}
+    </p>
+    <h1
+      class:list={[
+        "max-w-3xl font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-tight font-bold tracking-tight",
+        theme.heading,
+      ]}
+    >
+      {heading}
+    </h1>
+    <p class:list={["mt-4 max-w-xl text-lg", theme.body]}>
+      {body}
+    </p>
+  </div>
+</section>

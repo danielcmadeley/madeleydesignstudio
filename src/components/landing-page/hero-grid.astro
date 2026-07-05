@@ -22,12 +22,12 @@ interface Props {
 const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
 ---
 
-<div class="mt-[50px]">
+<div class="mt-header">
   <main
     data-hero-main
     data-hero-slides={JSON.stringify(heroSlides)}
     data-hero-cycle-seconds={homePage.heroCycleSeconds}
-    class="relative grid h-[calc(100svh-50px)] grid-cols-3 grid-rows-[3fr_2fr] items-stretch overflow-hidden"
+    class="relative grid h-[calc(100svh-var(--spacing-header))] grid-cols-3 grid-rows-[3fr_2fr] items-stretch overflow-hidden"
   >
     <HeroTopLeft slides={heroSlides} />
     <HeroAecPanel slides={heroSlides} />
@@ -36,10 +36,7 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
   </main>
 </div>
 
-<HeroContinuation
-  slides={heroSlides}
-  tagline={homePage.continuationTagline}
-/>
+<HeroContinuation slides={heroSlides} tagline={homePage.continuationTagline} />
 
 <PageSections
   verticalSections={verticalSections}
@@ -75,7 +72,7 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
 
   function getActiveLogo(panel: HTMLElement) {
     return panel.querySelector<HTMLImageElement>(
-      `[data-hero-aec-logo][data-slide="${activeSlide}"]`,
+      `[data-hero-aec-logo][data-slide="${activeSlide}"]`
     )
   }
 
@@ -88,12 +85,6 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
   function setSlideVisibility(slideElements: Element[], visibleIndex: number) {
     slideElements.forEach((element, index) => {
       gsap.set(element, { opacity: index === visibleIndex ? 1 : 0 })
-    })
-  }
-
-  function setLogoVisibility(logos: Element[], visibleIndex: number) {
-    logos.forEach((logo, index) => {
-      gsap.set(logo, { opacity: index === visibleIndex ? 1 : 0 })
     })
   }
 
@@ -112,15 +103,22 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
     const prevIndex = activeSlide
     const headlines = gsap.utils.toArray<Element>("[data-hero-headline]")
     const subtexts = gsap.utils.toArray<Element>("[data-hero-subtext]")
-    const continuations = gsap.utils.toArray<Element>("[data-hero-continuation]")
+    const continuations = gsap.utils.toArray<Element>(
+      "[data-hero-continuation]"
+    )
     const logos = gsap.utils.toArray<Element>("[data-hero-aec-logo]")
 
     cycleTimeline?.kill()
 
-    gsap.set([headlines[nextIndex], subtexts[nextIndex], continuations[nextIndex]], {
-      opacity: 0,
-    })
-    gsap.set(logos[nextIndex], { opacity: 0 })
+    gsap.set(
+      [
+        headlines[nextIndex],
+        subtexts[nextIndex],
+        continuations[nextIndex],
+        logos[nextIndex],
+      ],
+      { opacity: 0 }
+    )
 
     cycleTimeline = gsap.timeline({
       onComplete: () => {
@@ -129,7 +127,7 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
         setSlideVisibility(headlines, nextIndex)
         setSlideVisibility(subtexts, nextIndex)
         setSlideVisibility(continuations, nextIndex)
-        setLogoVisibility(logos, nextIndex)
+        setSlideVisibility(logos, nextIndex)
         updateVerticalSections(nextIndex)
         if (heroExpandProgress <= 0.001) {
           applyHeroFrame?.(0)
@@ -138,15 +136,25 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
     })
 
     cycleTimeline.to(
-      [headlines[prevIndex], subtexts[prevIndex], continuations[prevIndex], logos[prevIndex]],
+      [
+        headlines[prevIndex],
+        subtexts[prevIndex],
+        continuations[prevIndex],
+        logos[prevIndex],
+      ],
       { opacity: 0, duration: 0.6, ease: "power2.inOut" },
-      0,
+      0
     )
 
     cycleTimeline.to(
-      [headlines[nextIndex], subtexts[nextIndex], continuations[nextIndex], logos[nextIndex]],
+      [
+        headlines[nextIndex],
+        subtexts[nextIndex],
+        continuations[nextIndex],
+        logos[nextIndex],
+      ],
       { opacity: 1, duration: 0.6, ease: "power2.inOut" },
-      0,
+      0
     )
   }
 
@@ -170,7 +178,9 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
   }
 
   function initHeroCycle() {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
     if (prefersReducedMotion) return
 
     heroSlides.forEach((slide) => {
@@ -180,14 +190,18 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
 
     if (!heroUiReady) {
       heroUiReady = true
-      document.querySelector("[data-hero-indicators]")?.addEventListener("click", (event) => {
-        const button = (event.target as Element | null)?.closest("[data-hero-indicator]")
-        if (!button) return
+      document
+        .querySelector("[data-hero-indicators]")
+        ?.addEventListener("click", (event) => {
+          const button = (event.target as Element | null)?.closest(
+            "[data-hero-indicator]"
+          )
+          if (!button) return
 
-        const index = Number(button.getAttribute("data-hero-indicator"))
-        goToSlide(index)
-        startCycle()
-      })
+          const index = Number(button.getAttribute("data-hero-indicator"))
+          goToSlide(index)
+          startCycle()
+        })
     }
 
     startCycle()
@@ -201,12 +215,19 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
     const panel = document.querySelector<HTMLElement>("[data-hero-aec]")
     const cell = document.querySelector<HTMLElement>("[data-hero-aec-cell]")
     const topLeft = document.querySelector<HTMLElement>("[data-hero-top-left]")
-    const bottomLeft = document.querySelector<HTMLElement>("[data-hero-bottom-left]")
-    const bottomRight = document.querySelector<HTMLElement>("[data-hero-bottom-right]")
+    const bottomLeft = document.querySelector<HTMLElement>(
+      "[data-hero-bottom-left]"
+    )
+    const bottomRight = document.querySelector<HTMLElement>(
+      "[data-hero-bottom-right]"
+    )
 
-    if (!main || !panel || !cell || !topLeft || !bottomLeft || !bottomRight) return
+    if (!main || !panel || !cell || !topLeft || !bottomLeft || !bottomRight)
+      return
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
     if (prefersReducedMotion) return
 
     const run = () => {
@@ -230,7 +251,8 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
 
         const metrics = getCellMetrics()
         const bottomRowTop =
-          bottomLeft.getBoundingClientRect().top - main.getBoundingClientRect().top
+          bottomLeft.getBoundingClientRect().top -
+          main.getBoundingClientRect().top
 
         const getLogoAspect = (activeLogo: HTMLImageElement) =>
           activeLogo.naturalWidth > 0
@@ -253,8 +275,16 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
           const end = expanded()
           const top = gsap.utils.interpolate(metrics.top, end.top, progress)
           const left = gsap.utils.interpolate(metrics.left, end.left, progress)
-          const width = gsap.utils.interpolate(metrics.width, end.width, progress)
-          const height = gsap.utils.interpolate(metrics.height, end.height, progress)
+          const width = gsap.utils.interpolate(
+            metrics.width,
+            end.width,
+            progress
+          )
+          const height = gsap.utils.interpolate(
+            metrics.height,
+            end.height,
+            progress
+          )
 
           return { top, left, width, height, bottom: top + height }
         }
@@ -275,28 +305,43 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
           })
 
           gsap.set(topLeft, { x: -(metrics.left - panelRect.left) })
-          gsap.set(bottomLeft, { y: Math.max(0, panelRect.bottom - bottomRowTop) })
-          gsap.set(bottomRight, { y: Math.max(0, panelRect.bottom - bottomRowTop) })
-
-          panel.querySelectorAll<HTMLImageElement>("[data-hero-aec-logo]").forEach((img) => {
-            const isActive = img === activeLogo
-            gsap.set(img, {
-              opacity: isActive ? 1 : 0,
-              width: isActive
-                ? gsap.utils.interpolate(logoStart.width, endLogo.width, progress)
-                : logoStart.width,
-              height: isActive
-                ? gsap.utils.interpolate(logoStart.height, endLogo.height, progress)
-                : logoStart.height,
-            })
+          gsap.set(bottomLeft, {
+            y: Math.max(0, panelRect.bottom - bottomRowTop),
           })
+          gsap.set(bottomRight, {
+            y: Math.max(0, panelRect.bottom - bottomRowTop),
+          })
+
+          panel
+            .querySelectorAll<HTMLImageElement>("[data-hero-aec-logo]")
+            .forEach((img) => {
+              const isActive = img === activeLogo
+              gsap.set(img, {
+                opacity: isActive ? 1 : 0,
+                width: isActive
+                  ? gsap.utils.interpolate(
+                      logoStart.width,
+                      endLogo.width,
+                      progress
+                    )
+                  : logoStart.width,
+                height: isActive
+                  ? gsap.utils.interpolate(
+                      logoStart.height,
+                      endLogo.height,
+                      progress
+                    )
+                  : logoStart.height,
+              })
+            })
         }
 
         gsap.set(panel, { position: "absolute" })
         applyHeroFrame = applyFrame
         applyFrame(0)
 
-        const headerHeight = document.querySelector("header")?.offsetHeight ?? 50
+        const headerHeight =
+          document.querySelector("header")?.offsetHeight ?? 50
 
         scrollTriggerInstance = ScrollTrigger.create({
           trigger: main,
@@ -338,7 +383,9 @@ const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
     applyHeroFrame = undefined
 
     const main = document.querySelector<HTMLElement>("[data-hero-main]")
-    heroSlides = main?.dataset.heroSlides ? JSON.parse(main.dataset.heroSlides) : []
+    heroSlides = main?.dataset.heroSlides
+      ? JSON.parse(main.dataset.heroSlides)
+      : []
     heroCycleSeconds = Number(main?.dataset.heroCycleSeconds ?? 6)
     activeSlide = 0
     heroExpandProgress = 0

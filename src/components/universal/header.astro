@@ -8,6 +8,10 @@ interface Props {
 const { siteSettings } = Astro.props
 const { headerCta } = siteSettings
 
+const siteNameMatch = siteSettings.siteName.match(/^(.*?)(studio\.?)$/i)
+const siteNamePrefix = siteNameMatch?.[1] ?? siteSettings.siteName
+const siteNameSuffix = siteNameMatch?.[2] ?? ""
+
 const navLinks = [
   { label: "studio", href: "/studio" },
   { label: "forge", href: "/forge" },
@@ -16,13 +20,14 @@ const navLinks = [
 ---
 
 <header
-  class="fixed top-0 right-0 left-0 z-50 flex h-[50px] w-full items-stretch justify-between border-b border-[#BA0000] bg-[#F8EACD]"
+  class="fixed top-0 right-0 left-0 z-50 flex h-header w-full items-stretch justify-between border-b border-brand-red bg-cream"
 >
   <a
     href="/"
-    class="font-heading flex items-center pl-6 text-sm lowercase text-[#BA0000] no-underline"
+    class="flex items-center pl-6 font-heading font-bold text-sm lowercase no-underline"
   >
-    {siteSettings.siteName}
+    <span class="text-charcoal">{siteNamePrefix}</span>
+    {siteNameSuffix && <span class="text-brand-red">{siteNameSuffix}</span>}
   </a>
   <div class="flex h-full items-stretch">
     <nav class="flex h-full items-stretch" aria-label="Primary">
@@ -30,7 +35,7 @@ const navLinks = [
         navLinks.map((link) => (
           <a
             href={link.href}
-            class="flex h-full items-center border-l border-[#BA0000] px-6 text-sm lowercase text-[#1a1a1a] no-underline"
+            class="flex h-full items-center border-l border-brand-red px-6 text-sm text-charcoal lowercase no-underline"
           >
             {link.label}
           </a>
@@ -41,7 +46,7 @@ const navLinks = [
       href={headerCta.url}
       target={headerCta.openInNewTab ? "_blank" : undefined}
       rel={headerCta.openInNewTab ? "noreferrer noopener" : undefined}
-      class="flex h-full items-center gap-3 border-l border-[#BA0000] bg-[#BA0000] px-6 text-sm lowercase text-white no-underline"
+      class="flex h-full items-center gap-3 border-l border-brand-red bg-brand-red px-6 text-sm text-white lowercase no-underline"
     >
       {headerCta.label}
       <svg
@@ -55,8 +60,7 @@ const navLinks = [
         <path
           d="M0 5H19M19 5L14.5 0.5M19 5L14.5 9.5"
           stroke="currentColor"
-          stroke-width="1.2"
-        />
+          stroke-width="1.2"></path>
       </svg>
     </a>
   </div>
