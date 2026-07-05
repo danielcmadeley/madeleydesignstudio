@@ -1,0 +1,34 @@
+src/components/landing-page/service-card.astro
+  s_08255b4eebe79e::t_d3345836086f5a 118,120
+  s_08255b4eebe79e::t_a13b2e1b81dfc1 19
+  s_08255b4eebe79e::t_bc0419c08143ef 97,99-102
+  s_08255b4eebe79e::t_d5364dfc8ff46a 115
+  s_08255b4eebe79e::t_66eb4a42d96846 13-18,20,23-24,28,40-41,43-58,66-81,83-96,98,103,105,107-112,114,116-117,122-132
+  s_08255b4eebe79e::t_905a8dde3788bc 1-12,29-32,34-39,42,59-65,82,104,106,113,119,121,133-138,140-146,148-153
+  s_08255b4eebe79e::t_d272f93c3aad54 21-22
+  s_08255b4eebe79e::t_f8988821289936 33,139,147
+  s_08255b4eebe79e::t_17f3a42e5c3168 25-27
+src/components/landing-page/services-section.astro
+  s_08255b4eebe79e::t_ad682d1defd38f 2,17-19
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "66db47955871d672926c717bbc416eacef5a72d3",
+  "prompts": {},
+  "humans": {
+    "h_c71e0cdb2092d3": {
+      "author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  },
+  "sessions": {
+    "s_08255b4eebe79e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "57dfa411-5da8-4749-b57a-c9914a1577c8",
+        "model": "claude-fable-5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
