@@ -7,23 +7,57 @@ interface Props {
 
 const { siteSettings } = Astro.props
 const { headerCta } = siteSettings
+
+const navLinks = [
+  { label: "studio", href: "/studio" },
+  { label: "forge", href: "/forge" },
+  { label: "company", href: "/company" },
+]
 ---
 
 <header
-  class="fixed top-0 right-0 left-0 z-50 flex h-[50px] w-full items-center justify-between border-b border-[#BA0000] bg-[#F8EACD]"
+  class="fixed top-0 right-0 left-0 z-50 flex h-[50px] w-full items-stretch justify-between border-b border-[#BA0000] bg-[#F8EACD]"
 >
   <a
     href="/"
-    class="font-heading pl-6 text-sm lowercase text-[#BA0000] no-underline"
+    class="font-heading flex items-center pl-6 text-sm lowercase text-[#BA0000] no-underline"
   >
     {siteSettings.siteName}
   </a>
-  <a
-    href={headerCta.url}
-    target={headerCta.openInNewTab ? "_blank" : undefined}
-    rel={headerCta.openInNewTab ? "noreferrer noopener" : undefined}
-    class="flex h-full items-center bg-[#BA0000] px-6 text-sm lowercase text-white no-underline"
-  >
-    {headerCta.label}
-  </a>
+  <div class="flex h-full items-stretch">
+    <nav class="flex h-full items-stretch" aria-label="Primary">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="flex h-full items-center border-l border-[#BA0000] px-6 text-sm lowercase text-[#1a1a1a] no-underline"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+    <a
+      href={headerCta.url}
+      target={headerCta.openInNewTab ? "_blank" : undefined}
+      rel={headerCta.openInNewTab ? "noreferrer noopener" : undefined}
+      class="flex h-full items-center gap-3 border-l border-[#BA0000] bg-[#BA0000] px-6 text-sm lowercase text-white no-underline"
+    >
+      {headerCta.label}
+      <svg
+        width="20"
+        height="10"
+        viewBox="0 0 20 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M0 5H19M19 5L14.5 0.5M19 5L14.5 9.5"
+          stroke="currentColor"
+          stroke-width="1.2"
+        />
+      </svg>
+    </a>
+  </div>
 </header>

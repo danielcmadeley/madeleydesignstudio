@@ -8,6 +8,7 @@ import PageSections from "@/components/landing-page/page-sections.astro"
 import type {
   HeroSlideView,
   HomePageContent,
+  SiteSettingsContent,
   VerticalSectionView,
 } from "@/lib/sanity/types"
 
@@ -15,9 +16,10 @@ interface Props {
   heroSlides: HeroSlideView[]
   homePage: HomePageContent
   verticalSections: VerticalSectionView[]
+  siteSettings: SiteSettingsContent
 }
 
-const { heroSlides, homePage, verticalSections } = Astro.props
+const { heroSlides, homePage, verticalSections, siteSettings } = Astro.props
 ---
 
 <div class="mt-[50px]">
@@ -43,6 +45,7 @@ const { heroSlides, homePage, verticalSections } = Astro.props
   verticalSections={verticalSections}
   services={homePage.services}
   footer={homePage.footer}
+  siteSettings={siteSettings}
 />
 
 <script>
