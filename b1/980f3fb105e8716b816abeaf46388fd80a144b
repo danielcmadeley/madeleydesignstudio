@@ -1,0 +1,43 @@
+src/components/universal/header.astro
+  s_707d78eeea548c::t_7bfb1e7e5e2ab7 19,23,27-62
+  s_707d78eeea548c::t_3cdb5d5f674b9e 10-15
+src/pages/company.astro
+  s_707d78eeea548c::t_15141951665bd3 1-26
+src/pages/forge.astro
+  s_707d78eeea548c::t_12832194ca6f9f 10,13
+  s_707d78eeea548c::t_2139c3bf54c25f 1-9,11-12,14-26
+src/components/landing-page/page-sections.astro
+  s_707d78eeea548c::t_6cb93133f62123 6,14,17
+  s_707d78eeea548c::t_ca06ad3a4dcb6f 63,81,88-91
+  s_707d78eeea548c::t_c48345ed440fa7 103
+  s_707d78eeea548c::t_d0b12b81cae771 51
+  s_707d78eeea548c::t_b754f0c466e9c0 52-62,64-80,82-87,92-102
+src/pages/index.astro
+  s_707d78eeea548c::t_68d8d8ce6fedbd 25
+src/components/landing-page/hero-grid.astro
+  s_707d78eeea548c::t_1351cda2d5f96c 48
+  s_707d78eeea548c::t_d407958a76e966 11,19,22
+src/pages/studio.astro
+  s_707d78eeea548c::t_d6508a22c20042 1-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "b1980f3fb105e8716b816abeaf46388fd80a144b",
+  "prompts": {},
+  "humans": {
+    "h_c71e0cdb2092d3": {
+      "author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  },
+  "sessions": {
+    "s_707d78eeea548c": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2a69ee20-0e10-4955-aafb-b13634b5f845",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "danielcmadeley <daniel@madeleydesignstudio.org>"
+    }
+  }
+}
